@@ -1,4 +1,7 @@
 ﻿using Nedeljni_I_Dejan_Prodanovic.Commands;
+using Nedeljni_I_Dejan_Prodanovic.Model;
+using Nedeljni_I_Dejan_Prodanovic.Service;
+using Nedeljni_I_Dejan_Prodanovic.Utility;
 using Nedeljni_I_Dejan_Prodanovic.View;
 using System;
 using System.Collections.Generic;
@@ -14,10 +17,13 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
     class LoginViewModel:ViewModelBase
     {
         LoginView view;
-
+        IUserService userService;
+        IAdminService adminService;
         public LoginViewModel(LoginView loginView)
         {
             view = loginView;
+            userService = new UserService();
+            adminService = new AdminService();
         }
 
         private string userName;
@@ -70,6 +76,8 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
 
             string password = (obj as PasswordBox).Password;
 
+          
+
             if (string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Wrong user name or password");
@@ -81,6 +89,14 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                 PredifinedAccount predifinedAccount = new PredifinedAccount();
                 view.Close();
                 predifinedAccount.Show();
+            }
+
+            string encryptedString = EncryptionHelper.Encrypt(password);
+
+            tblUser user = userService.GetUserByUserNameAndPassword(UserName, encryptedString);
+            if (user!=null)
+            {
+
             }
             //else if (UserName.Equals(UserConstants.STOREKEEPER_USER_NAME) &&
             //    password.Equals(UserConstants.STOREKEEPER_PASSWORD))

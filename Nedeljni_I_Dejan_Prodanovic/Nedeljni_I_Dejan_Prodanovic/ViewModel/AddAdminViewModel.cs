@@ -2,6 +2,7 @@
 using Nedeljni_I_Dejan_Prodanovic.Model;
 using Nedeljni_I_Dejan_Prodanovic.Service;
 using Nedeljni_I_Dejan_Prodanovic.Utility;
+using Nedeljni_I_Dejan_Prodanovic.Validation;
 using Nedeljni_I_Dejan_Prodanovic.View;
 using System;
 using System.Collections.Generic;
@@ -127,7 +128,13 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
         {
             try
             {
-                 
+                DateTime dateOfBirth;
+
+                if (!ValidationClass.JMBGisValid(User.JMBG,out dateOfBirth))
+                {
+                    MessageBox.Show("JMBG is not valid");
+                    return;
+                }
                 var passwordBox = parameter as PasswordBox;
                 var password = passwordBox.Password;
 
@@ -143,7 +150,8 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                 Admin.UserID = User.UserID;
 
                 adminService.AddAdmin(Admin);
-
+                string str = string.Format("You added new admin of type {0}", SelctedType);
+                MessageBox.Show(str);
                 view.Close();
 
             }

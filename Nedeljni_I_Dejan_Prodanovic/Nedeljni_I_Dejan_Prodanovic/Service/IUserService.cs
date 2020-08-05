@@ -10,5 +10,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
     interface IUserService
     {
         tblUser AddUser(tblUser user);
+        tblUser GetUserByUserNameAndPassword(string username, string password);
+
     }
 }

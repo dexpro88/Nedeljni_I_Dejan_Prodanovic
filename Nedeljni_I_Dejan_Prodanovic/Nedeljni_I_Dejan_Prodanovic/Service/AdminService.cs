@@ -19,12 +19,35 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
                     tblAdmin newAdmin = new tblAdmin();
                     newAdmin.UserID = admin.UserID;
                     newAdmin.ExpiryDate = admin.ExpiryDate;
+                    newAdmin.AdministratorType = admin.AdministratorType;
 
                     context.tblAdmins.Add(newAdmin);
                     context.SaveChanges();
 
                     return newAdmin;
 
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public tblAdmin GetAdminByUserId(int userId)
+        {
+            try
+            {
+                using (CompanyDataEntities context = new CompanyDataEntities())
+                {
+
+
+                    tblAdmin admin = (from x in context.tblAdmins
+                                    where x.UserID == userId
+                                      select x).First();
+
+                    return admin;
                 }
             }
             catch (Exception ex)

@@ -93,7 +93,7 @@
             </StackPanel>
             <Label Content="Location:" />
             <StackPanel Orientation="Horizontal">
-                <TextBox Text="{Binding Product.Residence}" />
+                <TextBox Text="{Binding User.Residence}" />
             </StackPanel>
             
             <Label Content="Gender:" />

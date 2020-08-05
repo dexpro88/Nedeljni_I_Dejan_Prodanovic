@@ -10,5 +10,6 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
     interface IAdminService
     {
         tblAdmin AddAdmin(tblAdmin admin);
+        tblAdmin GetAdminByUserId(int userId);
     }
 }

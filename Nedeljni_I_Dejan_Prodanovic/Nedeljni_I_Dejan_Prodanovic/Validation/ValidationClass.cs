@@ -8,7 +8,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Validation
 {
     class ValidationClass
     {
-        public bool JMBGisValid(string JMBG, out DateTime dateOfBirth)
+        public static bool JMBGisValid(string JMBG, out DateTime dateOfBirth)
         {
             dateOfBirth = new DateTime();
             if (JMBG.Length != 13)
