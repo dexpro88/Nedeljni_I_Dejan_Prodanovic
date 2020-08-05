@@ -135,6 +135,13 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                     MessageBox.Show("JMBG is not valid");
                     return;
                 }
+
+                int age = ValidationClass.CountAge(dateOfBirth);
+                if (age<18)
+                {
+                    MessageBox.Show("JMBG is not valid\nAdmin has to be at least 18 years old");
+                    return;
+                }
                 var passwordBox = parameter as PasswordBox;
                 var password = passwordBox.Password;
 

@@ -49,8 +49,8 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
 
 
                     tblUser user = (from x in context.tblUsers
-                                    where x.Username == username
-                                    && x.Password == password
+                                    where x.Username.Equals(username)
+                                    && x.Password.Equals(password)
                                     select x).First();
 
                     return user;

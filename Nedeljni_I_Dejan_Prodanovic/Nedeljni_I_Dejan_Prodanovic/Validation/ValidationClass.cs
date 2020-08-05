@@ -90,7 +90,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Validation
             return true;
         }
 
-        public int CountAge(DateTime dateOfBirth)
+        public static int CountAge(DateTime dateOfBirth)
         {
             int age;
             DateTime today = DateTime.Now;

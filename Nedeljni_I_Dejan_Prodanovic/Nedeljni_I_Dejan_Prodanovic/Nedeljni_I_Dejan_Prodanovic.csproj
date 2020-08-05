@@ -65,6 +65,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Events\ManagerAccesClass.cs" />
     <Compile Include="Model\CompanyDataBaseModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -119,15 +120,25 @@
     <Compile Include="ViewModel\AddAdminViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\PredifinedAccountViewModel.cs" />
+    <Compile Include="ViewModel\RegisterViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AddAdmin.xaml.cs">
       <DependentUpon>AddAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AdminMainView.xaml.cs">
+      <DependentUpon>AdminMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmployeeRegisterView.xaml.cs">
+      <DependentUpon>EmployeeRegisterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PredifinedAccount.xaml.cs">
       <DependentUpon>PredifinedAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RegisterView.xaml.cs">
+      <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -145,11 +156,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AdminMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EmployeeRegisterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PredifinedAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RegisterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
