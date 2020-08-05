@@ -92,6 +92,10 @@
             <StackPanel Orientation="Horizontal">
                 <TextBox Text="{Binding User.Residence}" />
             </StackPanel>
+            <Label Content="Years of Expierence:" />
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding User.LastName}" />
+            </StackPanel>
             <Label Content="Gender:" />
             <StackPanel Orientation="Horizontal"
                         Margin="10">
@@ -128,6 +132,13 @@
                       Width="200"
                       IsEditable="True"
                       ItemsSource="{Binding AdministratorTypesList, UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding SelctedType, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Content="Qualifications:" />
+            <ComboBox Name="cmbQualification"
+                      Height="20"
+                      Width="200"
+                      IsEditable="True"
+                      ItemsSource="{Binding Qualifications, UpdateSourceTrigger=PropertyChanged}"
                       SelectedItem="{Binding SelctedType, UpdateSourceTrigger=PropertyChanged}" />
             <Label Content="Username:" />
             <TextBox Text="{Binding User.Username}" />

@@ -43,7 +43,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             {
                 EmployeeRegisterView registerView = new EmployeeRegisterView();
                 registerView.Show();
-                view.Close();
+               
             }
             catch (Exception ex)
             {

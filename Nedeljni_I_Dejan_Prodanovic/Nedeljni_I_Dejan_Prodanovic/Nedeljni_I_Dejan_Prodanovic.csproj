@@ -112,12 +112,15 @@
       <DependentUpon>CompanyDataBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Service\AdminService.cs" />
+    <Compile Include="Service\EmployeeService.cs" />
     <Compile Include="Service\IAdminService.cs" />
+    <Compile Include="Service\IEmployeeService.cs" />
     <Compile Include="Service\IUserService.cs" />
     <Compile Include="Service\UserService.cs" />
     <Compile Include="Utility\EncryptionHelper.cs" />
     <Compile Include="Validation\ValidationClass.cs" />
     <Compile Include="ViewModel\AddAdminViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeRegisterViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\PredifinedAccountViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
