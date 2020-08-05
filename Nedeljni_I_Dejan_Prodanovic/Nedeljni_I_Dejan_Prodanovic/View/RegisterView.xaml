@@ -55,7 +55,9 @@
                     Orientation="Vertical"
                     VerticalAlignment="Center">
             <Button Command="{Binding AsManager}"
-                    Content="Register as Manager" />
+                    Content="Register as Manager"
+                    Visibility="{Binding ViewAsManager,
+                    UpdateSourceTrigger=PropertyChanged}" />
             <Button Command="{Binding AsEmployee}"
                     Content="Register as employee" />
             <Button Command="{Binding Back}"

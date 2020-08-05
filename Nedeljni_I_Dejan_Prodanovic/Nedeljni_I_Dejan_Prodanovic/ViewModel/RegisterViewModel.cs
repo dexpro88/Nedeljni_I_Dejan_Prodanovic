@@ -1,7 +1,9 @@
 ﻿using Nedeljni_I_Dejan_Prodanovic.Commands;
+using Nedeljni_I_Dejan_Prodanovic.InputDialog;
 using Nedeljni_I_Dejan_Prodanovic.View;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,8 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
            
 
         }
+
+        bool canAsManager = true;
 
         private ICommand asEmployee;
         public ICommand AsEmployee
@@ -55,7 +59,89 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             return true;
         }
 
+        private ICommand asManager;
+        public ICommand AsManager
+        {
+            get
+            {
+                if (asManager == null)
+                {
+                    asManager = new RelayCommand(param => AsManagerExecute(),
+                        param => CanAsManagerExecute());
+                }
+                return asManager;
+            }
+        }
 
+        private void AsManagerExecute()
+        {
+            
+            string passwordFromFile = ReadPasswordFromFile();
+          
+            int tryCounter = 3;
+            try
+            {
+                ManagerRegisterView registerView = new ManagerRegisterView();
+
+                MessageBoxResult result = MessageBox.Show("Are you sure that you want to register as manager?" +
+                        "", "My App",
+                       MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+                
+
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        for (int i = 0; i < 3; i++)
+                        {
+                            InputDialogSample inputDialog = new InputDialogSample("Please enter password from file " +
+                           "ManagerAccess.txt:", "");
+                            if (inputDialog.ShowDialog() == true)
+                                if (inputDialog.Answer.Equals(passwordFromFile))
+                                {
+                                    registerView.Show();
+                                    return;
+                                }
+                                else
+                                {
+                                    tryCounter--;
+                                    if (tryCounter!=0)
+                                    {
+                                        MessageBox.Show("Wrong password. You have " + tryCounter + " more attempts");
+
+                                    }
+                                  
+                                    if (tryCounter==0)
+                                    {
+                                        MessageBox.Show("You can't create manager account.\n" +
+                                            "Create employee account.");
+                                        canAsManager = false;
+                                        EmployeeRegisterView employeeRegisterView =
+                                            new EmployeeRegisterView();
+                                        employeeRegisterView.Show();
+                                        return;
+                                    }
+                                }
+                        }
+                       
+                           
+                            break;
+                }
+                
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        private bool CanAsManagerExecute()
+        {
+            if (!canAsManager)
+            {
+                return false;
+            }
+            return true;
+        }
         private ICommand logout;
         public ICommand Logout
         {
@@ -158,6 +244,31 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
         {
 
             return true;
+        }
+
+        string ReadPasswordFromFile()
+        {
+            try
+            {
+                
+                using (StreamReader sr = new StreamReader(@"..\..\ManagerAccess.txt"))
+                {
+                    string line;
+                   
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        return line;
+                    }
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                // Let the user know what went wrong.
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
+                return null;
+            }
         }
     }
 }
