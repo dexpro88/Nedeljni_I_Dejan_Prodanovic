@@ -36,5 +36,49 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
                 return null;
             }
         }
+        public tblManager GetManagerByEmail(string email)
+        {
+            try
+            {
+                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                {
+
+
+                    tblManager user = (from x in context.tblManagers
+                                    where x.Email.Equals(email)
+
+                                    select x).First();
+
+                    return user;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public tblManager GetManagerByUserId(int userId)
+        {
+            try
+            {
+                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                {
+
+
+                    tblManager manager = (from x in context.tblManagers
+                                      where x.UserID == userId
+                                      select x).First();
+
+                    return manager;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
     }
 }

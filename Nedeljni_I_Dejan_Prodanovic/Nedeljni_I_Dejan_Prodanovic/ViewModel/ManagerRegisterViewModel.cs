@@ -133,6 +133,42 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                     MessageBox.Show(str1);
                     return;
                 }
+
+                tblUser userInDb = userService.GetUserByUserName(User.Username);
+
+                if (userInDb!=null)
+                {
+                    string str1 = string.Format("User with this username exists\n" +
+                        "Enter another username");
+                    MessageBox.Show(str1);
+                    return;
+                }
+
+                userInDb = userService.GetUserByJMBG(User.JMBG);
+
+                if (userInDb != null)
+                {
+                    string str1 = string.Format("User with this JMBG exists\n" +
+                        "Enter another JMBG");
+                    MessageBox.Show(str1);
+                    return;
+                }
+
+                if (!ValidationClass.IsValidEmail(Manager.Email))
+                {
+                    MessageBox.Show("Email is not valid");
+                    return;
+                }
+
+                tblManager managerInDb = managerService.GetManagerByEmail(Manager.Email);
+
+                if (managerInDb != null)
+                {
+                    string str1 = string.Format("Manager with this emai exists\n" +
+                        "Enter another email");
+                    MessageBox.Show(str1);
+                    return;
+                }
                 var passwordBox = parameter as PasswordBox;
                 var password = passwordBox.Password;
 
@@ -144,6 +180,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
 
                 string reservePassword = string.Format("{0}WPF", Manager.ReservePassword);
                 Manager.ReservePassword = reservePassword;
+                Manager.UserID = User.UserID;
                 managerService.AddManager(Manager);
                
 

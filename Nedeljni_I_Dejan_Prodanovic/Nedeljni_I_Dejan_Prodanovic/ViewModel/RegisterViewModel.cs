@@ -98,7 +98,10 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                             if (inputDialog.ShowDialog() == true)
                                 if (inputDialog.Answer.Equals(passwordFromFile))
                                 {
-                                    registerView.Show();
+                                    registerView.ShowDialog();
+                                    LoginView loginView = new LoginView();
+                                    loginView.Show();
+                                    view.Close();
                                     return;
                                 }
                                 else
@@ -117,7 +120,9 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                                         canAsManager = false;
                                         EmployeeRegisterView employeeRegisterView =
                                             new EmployeeRegisterView();
-                                        employeeRegisterView.Show();
+                                        employeeRegisterView.ShowDialog();
+                                       
+                                       
                                         return;
                                     }
                                 }

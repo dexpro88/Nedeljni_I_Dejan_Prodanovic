@@ -10,5 +10,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
     interface IManagerService
     {
         tblManager AddManager(tblManager manager);
+        tblManager GetManagerByEmail(string email);
+        tblManager GetManagerByUserId(int userId);
     }
 }

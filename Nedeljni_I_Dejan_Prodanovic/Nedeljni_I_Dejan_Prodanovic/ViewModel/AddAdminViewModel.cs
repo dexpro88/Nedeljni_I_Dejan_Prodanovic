@@ -20,6 +20,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
         AddAdmin view;
         IAdminService adminService;
         IUserService userService;
+        IManagerService managerService;
 
         public AddAdminViewModel(AddAdmin addAdminView)
         {
@@ -28,6 +29,8 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             AdministratorTypesList = new List<string>() { "Team", "System", "Local" };
             adminService = new AdminService();
             userService = new UserService();
+            managerService = new ManagerService();
+
             User = new tblUser();
             Admin = new tblAdmin();
         }
@@ -140,6 +143,26 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                 if (age<18)
                 {
                     MessageBox.Show("JMBG is not valid\nAdmin has to be at least 18 years old");
+                    return;
+                }
+
+                tblUser userInDb = userService.GetUserByUserName(User.Username);
+
+                if (userInDb != null)
+                {
+                    string str1 = string.Format("User with this username exists\n" +
+                        "Enter another username");
+                    MessageBox.Show(str1);
+                    return;
+                }
+
+                userInDb = userService.GetUserByJMBG(User.JMBG);
+
+                if (userInDb != null)
+                {
+                    string str1 = string.Format("User with this JMBG exists\n" +
+                        "Enter another JMBG");
+                    MessageBox.Show(str1);
                     return;
                 }
                 var passwordBox = parameter as PasswordBox;

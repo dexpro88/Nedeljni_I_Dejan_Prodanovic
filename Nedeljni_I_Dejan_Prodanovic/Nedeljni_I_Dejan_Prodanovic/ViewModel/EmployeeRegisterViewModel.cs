@@ -158,7 +158,29 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                 int age = ValidationClass.CountAge(dateOfBirth);
                 if (age < 18)
                 {
-                    MessageBox.Show("JMBG is not valid\nAdmin has to be at least 18 years old");
+                    string str1 = string.Format("JMBG is not valid\nEmployee has " +
+                        "to be at least 18 years old");
+                    MessageBox.Show(str1);
+                    return;
+                }
+
+                tblUser userInDb = userService.GetUserByUserName(User.Username);
+
+                if (userInDb != null)
+                {
+                    string str1 = string.Format("User with this username exists\n" +
+                        "Enter another username");
+                    MessageBox.Show(str1);
+                    return;
+                }
+
+                userInDb = userService.GetUserByJMBG(User.JMBG);
+
+                if (userInDb != null)
+                {
+                    string str1 = string.Format("User with this JMBG exists\n" +
+                        "Enter another JMBG");
+                    MessageBox.Show(str1);
                     return;
                 }
                 var passwordBox = parameter as PasswordBox;

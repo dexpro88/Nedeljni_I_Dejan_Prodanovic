@@ -62,5 +62,51 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
                 return null;
             }
         }
+
+        public tblUser GetUserByUserName(string username)
+        {
+            try
+            {
+                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                {
+
+
+                    tblUser user = (from x in context.tblUsers
+                                    where x.Username.Equals(username)
+                                   
+                                    select x).First();
+
+                    return user;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public tblUser GetUserByJMBG(string JMBG)
+        {
+            try
+            {
+                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                {
+
+
+                    tblUser user = (from x in context.tblUsers
+                                    where x.JMBG.Equals(JMBG)
+
+                                    select x).First();
+
+                    return user;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
     }
 }
