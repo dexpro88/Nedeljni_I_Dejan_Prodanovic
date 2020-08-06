@@ -13,7 +13,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities context = new CompanyDataEntities())
+                using (CompanyDataEntities1 context = new CompanyDataEntities1())
                 {
 
                     tblUser newUser = new tblUser();
@@ -44,7 +44,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities context = new CompanyDataEntities())
+                using (CompanyDataEntities1 context = new CompanyDataEntities1())
                 {
 
 

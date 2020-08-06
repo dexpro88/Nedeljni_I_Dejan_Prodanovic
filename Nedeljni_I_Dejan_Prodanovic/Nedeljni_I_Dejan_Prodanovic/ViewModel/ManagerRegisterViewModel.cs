@@ -1,6 +1,8 @@
 ﻿using Nedeljni_I_Dejan_Prodanovic.Commands;
 using Nedeljni_I_Dejan_Prodanovic.Model;
 using Nedeljni_I_Dejan_Prodanovic.Service;
+using Nedeljni_I_Dejan_Prodanovic.Utility;
+using Nedeljni_I_Dejan_Prodanovic.Validation;
 using Nedeljni_I_Dejan_Prodanovic.View;
 using System;
 using System.Collections.Generic;
@@ -17,7 +19,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
     {
         ManagerRegisterView view;
         IUserService userService;
-
+        IManagerService managerService;
 
         public ManagerRegisterViewModel(ManagerRegisterView managerRegisterView)
         {
@@ -25,13 +27,10 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             
 
             userService = new UserService();
+            managerService = new ManagerService();
             User = new tblUser();
+            Manager = new tblManager();
         }
-
-
-
-
-
 
 
         private string selectedSector;
@@ -120,8 +119,37 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
         {
             try
             {
-                 
+                DateTime dateOfBirth;
+                if (!ValidationClass.JMBGisValid(User.JMBG, out dateOfBirth))
+                {
+                    MessageBox.Show("JMBG is not valid");
+                    return;
+                }
 
+                int age = ValidationClass.CountAge(dateOfBirth);
+                if (age < 18)
+                {
+                    string str1 = string.Format("JMBG is not valid\nManager has to be at least 18 years old");
+                    MessageBox.Show(str1);
+                    return;
+                }
+                var passwordBox = parameter as PasswordBox;
+                var password = passwordBox.Password;
+
+                string encryptedString = EncryptionHelper.Encrypt(password);
+                User.Gender = Gender;
+                User.MaritalStatus = MartialStatus;
+                User.Password = encryptedString;
+                User = userService.AddUser(User);
+
+                string reservePassword = string.Format("{0}WPF", Manager.ReservePassword);
+                Manager.ReservePassword = reservePassword;
+                managerService.AddManager(Manager);
+               
+
+                string str = string.Format("You registered as manager");
+                MessageBox.Show(str);
+                view.Close();
             }
             catch (Exception ex)
             {
@@ -135,7 +163,10 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             if (String.IsNullOrEmpty(User.FirstName) || String.IsNullOrEmpty(User.LastName)
                 || String.IsNullOrEmpty(User.JMBG) || String.IsNullOrEmpty(User.Residence)
                 || String.IsNullOrEmpty(User.Username) || parameter as PasswordBox == null
-                || SelectedSector == null)
+                || String.IsNullOrEmpty(Manager.Email) || String.IsNullOrEmpty(Manager.ReservePassword)
+                || String.IsNullOrEmpty(Manager.OfficeNumber)
+                 
+                || String.IsNullOrEmpty((parameter as PasswordBox).Password))
             {
                 return false;
             }

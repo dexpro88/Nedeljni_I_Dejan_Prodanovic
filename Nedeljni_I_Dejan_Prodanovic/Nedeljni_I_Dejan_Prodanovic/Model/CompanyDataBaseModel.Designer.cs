@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\panonit\Desktop\Nedeljni\Nedeljni_I_Dejan_Prodanovic\Nedeljni_I_Dejan_Prodanovic\Model\CompanyDataBaseModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\panonit\Desktop\NedeljniGit\Nedeljni_I_Dejan_Prodanovic\Nedeljni_I_Dejan_Prodanovic\Nedeljni_I_Dejan_Prodanovic\Model\CompanyDataBaseModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

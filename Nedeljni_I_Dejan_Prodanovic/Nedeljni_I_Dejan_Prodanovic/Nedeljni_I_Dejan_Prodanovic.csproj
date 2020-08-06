@@ -118,7 +118,9 @@
     <Compile Include="Service\EmployeeService.cs" />
     <Compile Include="Service\IAdminService.cs" />
     <Compile Include="Service\IEmployeeService.cs" />
+    <Compile Include="Service\IManagerService.cs" />
     <Compile Include="Service\IUserService.cs" />
+    <Compile Include="Service\ManagerService.cs" />
     <Compile Include="Service\UserService.cs" />
     <Compile Include="Utility\EncryptionHelper.cs" />
     <Compile Include="Validation\ValidationClass.cs" />

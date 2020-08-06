@@ -1,5 +1,6 @@
 --we create database  
 CREATE DATABASE CompanyData;
+
 GO
 
 use CompanyData;
@@ -58,7 +59,7 @@ DROP TABLE IF EXISTS tblReport;
     ResponsibilityLevel varchar(50),
 	NumberOfSuccesfullProjects int,
 	Salary decimal,
-	OfficeNumber int,  
+	OfficeNumber varchar(40),  
 	UserID int FOREIGN KEY REFERENCES tblUser(UserID)  
 
 );
@@ -66,8 +67,6 @@ DROP TABLE IF EXISTS tblReport;
  CREATE TABLE tblEmployee (
     EmployeeID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
     YearsOfService varchar(50),
-	JMBG varchar(50),
-    OrderStatus varchar(50),
 	Salary decimal,
 	ProfessionalQualifications varchar(50),
 	SectorID int FOREIGN KEY REFERENCES tblSector(SectorID) ON DELETE CASCADE, 
@@ -135,3 +134,5 @@ DROP TABLE IF EXISTS tblReport;
 	 
 );
 
+
+ 

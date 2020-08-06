@@ -13,10 +13,10 @@ namespace Nedeljni_I_Dejan_Prodanovic.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CompanyDataEntities : DbContext
+    public partial class CompanyDataEntities1 : DbContext
     {
-        public CompanyDataEntities()
-            : base("name=CompanyDataEntities")
+        public CompanyDataEntities1()
+            : base("name=CompanyDataEntities1")
         {
         }
     

@@ -95,8 +95,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBox Text="{Binding User.Residence}" />
             </StackPanel>
-            
-            <Label Content="Gender:" />
+            <Label Content="MaritalStatus:" />
             <StackPanel 
                         
                         Orientation="Horizontal"
@@ -115,7 +114,7 @@
                              Foreground="White"
                              CommandParameter="{Binding ElementName=cbMarried, Path=Content}"></RadioButton>
                 <RadioButton Width="60"
-                             Content="not marr"
+                             Content="not mar"
                              Command="{Binding Path=ChooseMartialStatus}"
                              Name="notMarried"
                              Foreground="White"

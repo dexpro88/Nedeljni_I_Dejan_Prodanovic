@@ -30,8 +30,6 @@
           </Key>
           <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="YearsOfService" Type="varchar" MaxLength="50" />
-          <Property Name="JMBG" Type="varchar" MaxLength="50" />
-          <Property Name="OrderStatus" Type="varchar" MaxLength="50" />
           <Property Name="Salary" Type="decimal" Precision="18" Scale="0" />
           <Property Name="ProfessionalQualifications" Type="varchar" MaxLength="50" />
           <Property Name="SectorID" Type="int" />
@@ -49,7 +47,7 @@
           <Property Name="ResponsibilityLevel" Type="varchar" MaxLength="50" />
           <Property Name="NumberOfSuccesfullProjects" Type="int" />
           <Property Name="Salary" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="OfficeNumber" Type="int" />
+          <Property Name="OfficeNumber" Type="varchar" MaxLength="40" />
           <Property Name="UserID" Type="int" />
         </EntityType>
         <EntityType Name="tblPosition">
@@ -380,8 +378,6 @@
           </Key>
           <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="YearsOfService" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="JMBG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OrderStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Salary" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="ProfessionalQualifications" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SectorID" Type="Int32" />
@@ -406,7 +402,7 @@
           <Property Name="ResponsibilityLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="NumberOfSuccesfullProjects" Type="Int32" />
           <Property Name="Salary" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="OfficeNumber" Type="Int32" />
+          <Property Name="OfficeNumber" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="UserID" Type="Int32" />
           <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__Manag__4316F928" FromRole="tblManager" ToRole="tblEmployee" />
           <NavigationProperty Name="tblUser" Relationship="Self.FK__tblManage__UserI__3D5E1FD2" FromRole="tblManager" ToRole="tblUser" />
@@ -656,7 +652,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CompanyDataEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CompanyDataEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tblAdmins" EntityType="Self.tblAdmin" />
           <EntitySet Name="tblDailyReports" EntityType="Self.tblDailyReport" />
           <EntitySet Name="tblEmployees" EntityType="Self.tblEmployee" />
@@ -725,7 +721,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CompanyDataModelStoreContainer" CdmEntityContainer="CompanyDataEntities">
+        <EntityContainerMapping StorageEntityContainer="CompanyDataModelStoreContainer" CdmEntityContainer="CompanyDataEntities1">
           <EntitySetMapping Name="tblAdmins">
             <EntityTypeMapping TypeName="CompanyDataModel.tblAdmin">
               <MappingFragment StoreEntitySet="tblAdmin">
@@ -752,8 +748,6 @@
               <MappingFragment StoreEntitySet="tblEmployee">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="YearsOfService" ColumnName="YearsOfService" />
-                <ScalarProperty Name="JMBG" ColumnName="JMBG" />
-                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="ProfessionalQualifications" ColumnName="ProfessionalQualifications" />
                 <ScalarProperty Name="SectorID" ColumnName="SectorID" />

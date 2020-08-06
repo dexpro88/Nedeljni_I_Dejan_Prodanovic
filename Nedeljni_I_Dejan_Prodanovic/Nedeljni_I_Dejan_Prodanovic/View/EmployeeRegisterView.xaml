@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Nedeljni_I_Dejan_Prodanovic.View"
         mc:Ignorable="d"
         Title="EmployeeRegisterView"
-        Height="600"
+        Height="700"
         Width="400"
         Background="#2e3137"
         WindowStartupLocation="CenterScreen">

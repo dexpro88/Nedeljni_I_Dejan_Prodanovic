@@ -28,7 +28,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Model
         public string ResponsibilityLevel { get; set; }
         public Nullable<int> NumberOfSuccesfullProjects { get; set; }
         public Nullable<decimal> Salary { get; set; }
-        public Nullable<int> OfficeNumber { get; set; }
+        public string OfficeNumber { get; set; }
         public Nullable<int> UserID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

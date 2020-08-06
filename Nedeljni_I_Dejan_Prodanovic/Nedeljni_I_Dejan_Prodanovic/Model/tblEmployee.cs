@@ -24,8 +24,6 @@ namespace Nedeljni_I_Dejan_Prodanovic.Model
     
         public int EmployeeID { get; set; }
         public string YearsOfService { get; set; }
-        public string JMBG { get; set; }
-        public string OrderStatus { get; set; }
         public Nullable<decimal> Salary { get; set; }
         public string ProfessionalQualifications { get; set; }
         public Nullable<int> SectorID { get; set; }
