@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Nedeljni_I_Dejan_Prodanovic.Model;
+using Nedeljni_I_Dejan_Prodanovic.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,11 @@ namespace Nedeljni_I_Dejan_Prodanovic.View
         public ManagerMainView()
         {
             InitializeComponent();
+        }
+        public ManagerMainView(tblManager manager)
+        {
+            InitializeComponent();
+            DataContext = new ManagerMainViewModel(this, manager);
         }
     }
 }

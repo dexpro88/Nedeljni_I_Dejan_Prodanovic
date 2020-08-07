@@ -51,6 +51,7 @@
             
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0"
+                    Visibility="{Binding ViewEmployeesSign, UpdateSourceTrigger=PropertyChanged}"
                      Grid.Column="2">
             <Label>Nesto pise:</Label>
         </StackPanel>
@@ -59,12 +60,12 @@
                     Grid.Column="0"
                     Orientation="Vertical"
                     VerticalAlignment="Center">
-            <Button Command="{Binding AsManager}"
-                    Content="Register as Manager"
+            <Button Command="{Binding AddSector}"
+                    Content="Add sector"
                     Visibility="{Binding ViewAsManager,
                     UpdateSourceTrigger=PropertyChanged}" />
             <Button Command="{Binding AsEmployee}"
-                    Content="Register as employee" />
+                    Content="Add position" />
             <Button Command="{Binding Back}"
                     Content="Back" />
         </StackPanel>

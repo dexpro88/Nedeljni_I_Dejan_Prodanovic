@@ -5,8 +5,69 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nedeljni_I_Dejan_Prodanovic.View"
         mc:Ignorable="d"
-        Title="AdminMainView" Height="450" Width="800">
+        Title="AdminMainView"
+        WindowStartupLocation="CenterScreen"
+        Height="350"
+        Width="650"
+        Background="#2e3137">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin"
+                    Value="10,10,10,10" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
+            <Setter Property="Padding"
+                    Value="10,0,10,0" />
+            <Setter Property="Background"
+                    Value="#545d6a" />
+            <Setter Property="Width"
+                    Value="140" />
+            <Setter Property="Foreground"
+                    Value="White" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="FontSize"
+                    Value="12" />
+            <Setter Property="Foreground"
+                    Value="White" />
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="120" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0"
+                    Visibility="{Binding ViewEmployeesSign, UpdateSourceTrigger=PropertyChanged}"
+                    Grid.Column="2">
+            <Label>Nesto pise:</Label>
+        </StackPanel>
+        <StackPanel Visibility="{Binding ViewMainMenu, UpdateSourceTrigger=PropertyChanged}"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Orientation="Vertical"
+                    VerticalAlignment="Center">
+            <Button Command="{Binding AddSector}"
+                    Content="Add sector"
+                    Visibility="{Binding IsSystemAdmin,
+                    UpdateSourceTrigger=PropertyChanged}" />
+            <Button Command="{Binding AsEmployee}"
+                    Visibility="{Binding IsSystemAdmin,
+                    UpdateSourceTrigger=PropertyChanged}"
+                    Content="Sectors" />
+            <Button Command="{Binding Back}"
+                    Content="Back" />
+        </StackPanel>
     </Grid>
 </Window>

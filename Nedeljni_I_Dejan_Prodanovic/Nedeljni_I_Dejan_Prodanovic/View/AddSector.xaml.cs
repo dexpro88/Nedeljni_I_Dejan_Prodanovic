@@ -1,5 +1,4 @@
-﻿using Nedeljni_I_Dejan_Prodanovic.Model;
-using Nedeljni_I_Dejan_Prodanovic.ViewModel;
+﻿using Nedeljni_I_Dejan_Prodanovic.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,18 +16,15 @@ using System.Windows.Shapes;
 namespace Nedeljni_I_Dejan_Prodanovic.View
 {
     /// <summary>
-    /// Interaction logic for AdminMainView.xaml
+    /// Interaction logic for AddSector.xaml
     /// </summary>
-    public partial class AdminMainView : Window
+    public partial class AddSector : Window
     {
-        public AdminMainView()
+        public AddSector()
         {
             InitializeComponent();
+            DataContext = new AddSectorViewModel(this);
         }
-        public AdminMainView(tblAdmin admin)
-        {
-            InitializeComponent();
-            DataContext = new AdminMainViewModel(this, admin);
-        }
+        
     }
 }

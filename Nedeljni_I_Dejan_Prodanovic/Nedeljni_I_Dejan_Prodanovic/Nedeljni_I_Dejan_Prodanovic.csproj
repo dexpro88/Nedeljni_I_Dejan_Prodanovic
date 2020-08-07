@@ -119,20 +119,28 @@
     <Compile Include="Service\IAdminService.cs" />
     <Compile Include="Service\IEmployeeService.cs" />
     <Compile Include="Service\IManagerService.cs" />
+    <Compile Include="Service\ISectorService.cs" />
     <Compile Include="Service\IUserService.cs" />
     <Compile Include="Service\ManagerService.cs" />
+    <Compile Include="Service\SectorService.cs" />
     <Compile Include="Service\UserService.cs" />
     <Compile Include="Utility\EncryptionHelper.cs" />
     <Compile Include="Validation\ValidationClass.cs" />
     <Compile Include="ViewModel\AddAdminViewModel.cs" />
+    <Compile Include="ViewModel\AddSectorViewModel.cs" />
+    <Compile Include="ViewModel\AdminMainViewModel.cs" />
     <Compile Include="ViewModel\EmployeeRegisterViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\ManagerMainViewModel.cs" />
     <Compile Include="ViewModel\ManagerRegisterViewModel.cs" />
     <Compile Include="ViewModel\PredifinedAccountViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AddAdmin.xaml.cs">
       <DependentUpon>AddAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddSector.xaml.cs">
+      <DependentUpon>AddSector.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AdminMainView.xaml.cs">
       <DependentUpon>AdminMainView.xaml</DependentUpon>
@@ -172,6 +180,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\AddAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddSector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

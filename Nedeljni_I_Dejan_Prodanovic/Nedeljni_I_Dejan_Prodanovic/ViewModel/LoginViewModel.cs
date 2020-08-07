@@ -112,7 +112,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
 
                 if (admin!=null)
                 {
-                    AdminMainView adminMainView = new AdminMainView();
+                    AdminMainView adminMainView = new AdminMainView(admin);
                     adminMainView.Show();
                     view.Close();
                 }
@@ -121,7 +121,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
 
                 if (manager != null)
                 {
-                    ManagerMainView managerMainView = new ManagerMainView();
+                    ManagerMainView managerMainView = new ManagerMainView(manager);
                     managerMainView.Show();
                     view.Close();
                 }
