@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Nedeljni_I_Dejan_Prodanovic.View"
         mc:Ignorable="d"
         Title="EmployeeRegisterView"
-        Height="700"
+        Height="720"
         Width="400"
         Background="#2e3137"
         WindowStartupLocation="CenterScreen">
@@ -51,8 +51,20 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
+        
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Center">
+            <StackPanel  Orientation="Vertical"
+                         Visibility="{Binding ViewNoSectorMessage, UpdateSourceTrigger=PropertyChanged}">
+            <Label FontSize="18"
+                   Content="There are no sectors in database "
+                   VerticalAlignment="Center"
+                   Foreground="White" />
+            <Label FontSize="18"
+                   Content="You can't create employee account "
+                   VerticalAlignment="Center"
+                   Foreground="White" />
+            </StackPanel>
             <Label Content="First Name:" />
             <StackPanel  Orientation="Horizontal">
                 <TextBox Text="{Binding User.FirstName}" />
@@ -120,33 +132,47 @@
                              CommandParameter="{Binding ElementName=notMarried, Path=Content}"></RadioButton>
             </StackPanel>
             <Label Content="Sector:" />
-            <ComboBox Name="cmbSector"
-                      Height="20"
-                      Width="200"
-                      IsEditable="True"
-                      ItemsSource="{Binding AdministratorTypesList, UpdateSourceTrigger=PropertyChanged}"
-                      SelectedItem="{Binding SelctedType, UpdateSourceTrigger=PropertyChanged}" />
+            <StackPanel  Orientation="Horizontal">
+                <ComboBox Name="cmbSector"
+                          Height="20"
+                          Width="200"
+                          IsEditable="True"
+                          ItemsSource="{Binding SectorList, UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="SectorName"
+                          SelectedItem="{Binding SelctedType, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
             <Label Content="Position:" />
-            <ComboBox Name="cmbPosition"
-                      Height="20"
-                      Width="200"
-                      IsEditable="True"
-                      ItemsSource="{Binding AdministratorTypesList, UpdateSourceTrigger=PropertyChanged}"
-                      SelectedItem="{Binding SelctedType, UpdateSourceTrigger=PropertyChanged}" />
+            <StackPanel  Orientation="Horizontal">
+                <ComboBox Name="cmbPosition"
+                          Height="20"
+                          Width="200"
+                          IsEditable="True"
+                          ItemsSource="{Binding PositionList, UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="PositionName"
+                          SelectedItem="{Binding SelctedType, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
             <Label Content="Qualifications:" />
-            <ComboBox Name="cmbQualification"
-                      Height="20"
-                      Width="200"
-                      IsEditable="True"
-                      ItemsSource="{Binding Qualifications, UpdateSourceTrigger=PropertyChanged}"
-                      SelectedItem="{Binding SelctedType, UpdateSourceTrigger=PropertyChanged}" />
+            <StackPanel  Orientation="Horizontal">
+                <ComboBox Name="cmbQualification"
+                          Height="20"
+                          Width="200"
+                          IsEditable="True"
+                          ItemsSource="{Binding Qualifications, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding SelctedType, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
             <Label Content="Username:" />
-            <TextBox Text="{Binding User.Username}" />
+            <StackPanel  Orientation="Horizontal">
+                <TextBox Text="{Binding User.Username}" />
+            </StackPanel>
             <Label Content="Password:" />
-            <PasswordBox Name="passwordBox"
+            <StackPanel  Orientation="Horizontal">
+                <PasswordBox Name="passwordBox"
                          Background="#545d6a"
                          Foreground="White"
+                         Width="200"
+                             Height="18"
                          FontSize="12" />
+            </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center"

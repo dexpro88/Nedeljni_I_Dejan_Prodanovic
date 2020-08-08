@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 
 namespace Nedeljni_I_Dejan_Prodanovic.Service
 {
-    class SectorService:ISectorService
+    class PositionService:IPositionService
     {
-        public tblSector AddSector(tblSector sector)
+        public tblPosition AddPosition(tblPosition position)
         {
             try
             {
                 using (CompanyDataEntities1 context = new CompanyDataEntities1())
                 {
 
-                    tblSector newSector = new tblSector();
-                    newSector.SectorName = sector.SectorName;
-                    newSector.SectorDescription = sector.SectorDescription;
-                    
-                    context.tblSectors.Add(newSector);
+                    tblPosition newPositon = new tblPosition();
+                    newPositon.PositionName = position.PositionName;
+                    newPositon.PositionDescription = position.PositionDescription;
+
+                    context.tblPositions.Add(newPositon);
                     context.SaveChanges();
 
-                    return newSector;
+                    return newPositon;
 
                 }
             }
@@ -34,7 +34,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
             }
         }
 
-        public tblSector GetSectorByName(string sectorName)
+        public tblPosition GetPositionByName(string positionName)
         {
             try
             {
@@ -42,10 +42,10 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
                 {
 
 
-                    tblSector user = (from x in context.tblSectors
-                                    where x.SectorName.Equals(sectorName)
+                    tblPosition user = (from x in context.tblPositions
+                                      where x.PositionName.Equals(positionName)
 
-                                    select x).First();
+                                      select x).First();
 
                     return user;
                 }
@@ -57,14 +57,14 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
             }
         }
 
-        public List<tblSector> GetSectors()
+        public List<tblPosition> GetPositions()
         {
             try
             {
                 using (CompanyDataEntities1 context = new CompanyDataEntities1())
                 {
-                    List<tblSector> list = new List<tblSector>();
-                    list = (from x in context.tblSectors select x).ToList();
+                    List<tblPosition> list = new List<tblPosition>();
+                    list = (from x in context.tblPositions select x).ToList();
                     return list;
                 }
             }
@@ -74,22 +74,22 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
                 return null;
             }
         }
-        public void DeleteSector(int sectorId)
+        public void DeletePosition(int positionId)
         {
             try
             {
                 using (CompanyDataEntities1 context = new CompanyDataEntities1())
                 {
-                    tblSector sectorToDelete = (from u in context.tblSectors
-                                                where u.SectorID == sectorId
+                    tblPosition positionToDelete = (from u in context.tblPositions
+                                                where u.PositionID == positionId
                                                 select u).First();
-                  
 
-                    context.tblSectors.Remove(sectorToDelete);
-                 
+
+                    context.tblPositions.Remove(positionToDelete);
+
                     context.SaveChanges();
 
-                  
+
                 }
             }
             catch (Exception ex)

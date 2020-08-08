@@ -119,25 +119,33 @@
     <Compile Include="Service\IAdminService.cs" />
     <Compile Include="Service\IEmployeeService.cs" />
     <Compile Include="Service\IManagerService.cs" />
+    <Compile Include="Service\IPositionService.cs" />
     <Compile Include="Service\ISectorService.cs" />
     <Compile Include="Service\IUserService.cs" />
     <Compile Include="Service\ManagerService.cs" />
+    <Compile Include="Service\PositionService.cs" />
     <Compile Include="Service\SectorService.cs" />
     <Compile Include="Service\UserService.cs" />
     <Compile Include="Utility\EncryptionHelper.cs" />
     <Compile Include="Validation\ValidationClass.cs" />
     <Compile Include="ViewModel\AddAdminViewModel.cs" />
+    <Compile Include="ViewModel\AddPositionViewModel.cs" />
     <Compile Include="ViewModel\AddSectorViewModel.cs" />
     <Compile Include="ViewModel\AdminMainViewModel.cs" />
     <Compile Include="ViewModel\EmployeeRegisterViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ManagerMainViewModel.cs" />
     <Compile Include="ViewModel\ManagerRegisterViewModel.cs" />
+    <Compile Include="ViewModel\PositionsViewModel.cs" />
     <Compile Include="ViewModel\PredifinedAccountViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
+    <Compile Include="ViewModel\SectorsViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AddAdmin.xaml.cs">
       <DependentUpon>AddAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddPosition.xaml.cs">
+      <DependentUpon>AddPosition.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddSector.xaml.cs">
       <DependentUpon>AddSector.xaml</DependentUpon>
@@ -157,11 +165,17 @@
     <Compile Include="View\ManagerRegisterView.xaml.cs">
       <DependentUpon>ManagerRegisterView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Positions.xaml.cs">
+      <DependentUpon>Positions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PredifinedAccount.xaml.cs">
       <DependentUpon>PredifinedAccount.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Sectors.xaml.cs">
+      <DependentUpon>Sectors.xaml</DependentUpon>
     </Compile>
     <Page Include="InputDialog\InputDialogSample.xaml">
       <SubType>Designer</SubType>
@@ -180,6 +194,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\AddAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddPosition.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -207,11 +225,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Positions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\PredifinedAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\RegisterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Sectors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

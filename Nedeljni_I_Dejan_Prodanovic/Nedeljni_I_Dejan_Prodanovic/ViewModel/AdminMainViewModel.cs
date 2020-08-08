@@ -14,17 +14,28 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
 {
     class AdminMainViewModel:ViewModelBase
     {
+        AdminMainView view;
+
         ISectorService sectorService;
         public AdminMainViewModel(AdminMainView adminMainView, tblAdmin adminLogedIn)
         {
 
             Admin = adminLogedIn;
+            view = adminMainView;
 
             if (admin.AdministratorType.Equals("System"))
             {
                 sectorService = new SectorService();
                 IsSystemAdmin = Visibility.Visible;
                 SectorList = sectorService.GetSectors();
+            }
+            else if(admin.AdministratorType.Equals("Team"))
+            {
+                IsTeamAdmin = Visibility.Visible;
+                    
+            }else if (admin.AdministratorType.Equals("Local"))
+            {
+                IsLocalAdmin = Visibility.Visible;
             }
         }
 
@@ -39,6 +50,34 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             {
                 isSystemAdmin = value;
                 OnPropertyChanged("IsSystemAdmin");
+            }
+        }
+
+        private Visibility isTeamAdmin = Visibility.Hidden;
+        public Visibility IsTeamAdmin
+        {
+            get
+            {
+                return isTeamAdmin;
+            }
+            set
+            {
+                isTeamAdmin = value;
+                OnPropertyChanged("IsTeamAdmin");
+            }
+        }
+
+        private Visibility isLocalAdmin = Visibility.Hidden;
+        public Visibility IsLocalAdmin
+        {
+            get
+            {
+                return isLocalAdmin;
+            }
+            set
+            {
+                isLocalAdmin = value;
+                OnPropertyChanged("IsLocalAdmin");
             }
         }
 
@@ -70,25 +109,91 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             }
         }
 
-        private ICommand addSector;
-        public ICommand AddSector
+      
+        private ICommand showSectors;
+        public ICommand ShowSectors
         {
             get
             {
-                if (addSector == null)
+                if (showSectors == null)
                 {
-                    addSector = new RelayCommand(param => AddSectorExecute(), param => CanAddSectorExecute());
+                    showSectors = new RelayCommand(param => ShowSectorsExecute(),
+                        param => CanShowSectorsExecute());
                 }
-                return addSector;
+                return showSectors;
             }
         }
 
-        private void AddSectorExecute()
+        private void ShowSectorsExecute()
         {
             try
             {
-                AddSector addSector = new AddSector();
-                addSector.Show();
+                Sectors sectors = new Sectors();
+                sectors.Show();
+                view.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        private bool CanShowSectorsExecute()
+        {
+            return true;
+        }
+
+        private ICommand showPositions;
+        public ICommand ShowPositions
+        {
+            get
+            {
+                if (showPositions == null)
+                {
+                    showPositions = new RelayCommand(param => ShowPositionsExecute(),
+                        param => CanShowPositionsExecute());
+                }
+                return showPositions;
+            }
+        }
+
+        private void ShowPositionsExecute()
+        {
+            try
+            {
+                Positions positions = new Positions();
+                positions.Show();
+                view.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        private bool CanShowPositionsExecute()
+        {
+            return true;
+        }
+
+        private ICommand logout;
+        public ICommand Logout
+        {
+            get
+            {
+                if (logout == null)
+                {
+                    logout = new RelayCommand(param => LogoutExecute(), param => CanLogoutExecute());
+                }
+                return logout;
+            }
+        }
+
+        private void LogoutExecute()
+        {
+            try
+            {
+                LoginView loginView = new LoginView();
+                loginView.Show();
+                view.Close();
 
             }
             catch (Exception ex)
@@ -96,7 +201,36 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                 MessageBox.Show(ex.ToString());
             }
         }
-        private bool CanAddSectorExecute()
+        private bool CanLogoutExecute()
+        {
+            return true;
+        }
+
+        private ICommand close;
+        public ICommand Close
+        {
+            get
+            {
+                if (close == null)
+                {
+                    close = new RelayCommand(param => CloseExecute(), param => CanCloseExecute());
+                }
+                return close;
+            }
+        }
+
+        private void CloseExecute()
+        {
+            try
+            {
+                view.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        private bool CanCloseExecute()
         {
             return true;
         }

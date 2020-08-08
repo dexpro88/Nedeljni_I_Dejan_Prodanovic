@@ -12,5 +12,6 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         tblSector AddSector(tblSector sector);
         tblSector GetSectorByName(string sectorName);
         List<tblSector> GetSectors();
+        void DeleteSector(int sectorId);
     }
 }

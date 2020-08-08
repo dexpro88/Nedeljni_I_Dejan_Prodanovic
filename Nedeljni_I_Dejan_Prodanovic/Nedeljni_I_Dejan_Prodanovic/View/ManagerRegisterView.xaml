@@ -123,8 +123,7 @@
             <TextBox Text="{Binding Manager.OfficeNumber}" />
             <Label Content="Password hint:" />
             <TextBox Text="{Binding Manager.ReservePassword}" />
-            <Label Content="OfficeNumber:" />
-            <TextBox Text="{Binding Manager.OfficeNumber}" />
+
             <Label Content="Username:" />
             <TextBox Text="{Binding User.Username}" />
             <Label Content="Password:" />

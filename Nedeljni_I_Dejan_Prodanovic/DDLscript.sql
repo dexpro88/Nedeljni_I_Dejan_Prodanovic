@@ -134,5 +134,35 @@ DROP TABLE IF EXISTS tblReport;
 	 
 );
 
+GO
+CREATE VIEW vwManager
+AS
 
+SELECT   dbo.tblManager.NumberOfSuccesfullProjects ,dbo.tblManager.OfficeNumber,
+         dbo.tblManager.ManagerID ,dbo.tblManager.Email ,dbo.tblManager.ResponsibilityLevel ,
+         dbo.tblUser.UserID, dbo.tblUser.FirstName, dbo.tblUser.LastName, dbo.tblUser.Gender,
+         dbo.tblUser.JMBG, dbo.tblUser.Residence,dbo.tblUser.MaritalStatus,
+		 dbo.tblUser.Username 
+FROM            dbo.tblUser INNER JOIN
+            dbo.tblManager ON dbo.tblManager.UserID = dbo.tblUser.UserID  
+           
+GO
+
+
+GO
+CREATE VIEW vwEmployee
+AS
+
+SELECT   dbo.tblEmployee.YearsOfService ,dbo.tblEmployee.Salary,
+         dbo.tblEmployee.ManagerID ,dbo.tblEmployee.ProfessionalQualifications,
+		 dbo.tblEmployee.PositionID ,dbo.tblEmployee.SectorID ,
+         dbo.tblUser.UserID, dbo.tblUser.FirstName, dbo.tblUser.LastName, dbo.tblUser.Gender,
+         dbo.tblUser.JMBG, dbo.tblUser.Residence,dbo.tblUser.MaritalStatus,
+		 dbo.tblUser.Username 
+FROM            dbo.tblUser INNER JOIN
+            dbo.tblEmployee ON dbo.tblEmployee.UserID = dbo.tblUser.UserID  
+			INNER JOIN
+            dbo.tblSector ON dbo.tblSector.SectorID = dbo.tblEmployee.UserID  
+           
+GO
  

@@ -19,22 +19,48 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
     {
         EmployeeRegisterView view;
         IUserService userService;
-        
-       
+        ISectorService sectorService;
+
+
         public EmployeeRegisterViewModel(EmployeeRegisterView employeeRegisterView)
         {
             view = employeeRegisterView;
             qualifications = new List<string>() { "I", "II", "III", "IV", "V", "VI", "VII" };
 
             userService = new UserService();
+            sectorService = new SectorService();
+
             User = new tblUser();
             Employee = new tblEmployee();
+            SectorList = sectorService.GetSectors();
+            if (SectorList.Count==0)
+            {
+                ViewNoSectorMessage = Visibility.Visible;
+              
+            }
+            else
+            {
+                ViewNoSectorMessage = Visibility.Hidden;
+                
+            }
         }
 
-       
-        
- 
-       
+
+
+        private Visibility viewNoSectorMessage;
+        public Visibility ViewNoSectorMessage
+        {
+            get
+            {
+                return viewNoSectorMessage;
+            }
+            set
+            {
+                viewNoSectorMessage = value;
+                OnPropertyChanged("ViewNoSectorMessage");
+            }
+        }
+
 
 
         private string selectedSector;
@@ -127,6 +153,20 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             {
                 sectorList = value;
                 OnPropertyChanged("SectorList");
+            }
+        }
+
+        private List<tblPosition> positionList;
+        public List<tblPosition> PositionList
+        {
+            get
+            {
+                return positionList;
+            }
+            set
+            {
+                positionList = value;
+                OnPropertyChanged("PositionList");
             }
         }
 

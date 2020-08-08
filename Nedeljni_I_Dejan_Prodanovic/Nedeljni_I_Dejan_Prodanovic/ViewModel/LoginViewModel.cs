@@ -121,6 +121,13 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
 
                 if (manager != null)
                 {
+                    if (string.IsNullOrEmpty(manager.ResponsibilityLevel))
+                    {
+                        string str1 = string.Format("You can not login\nAdmin has not gave you" +
+                            " responsibility level yet");
+                        MessageBox.Show(str1);
+                        return;
+                    }
                     ManagerMainView managerMainView = new ManagerMainView(manager);
                     managerMainView.Show();
                     view.Close();

@@ -197,7 +197,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             if (String.IsNullOrEmpty(User.FirstName) || String.IsNullOrEmpty(User.LastName)
                 || String.IsNullOrEmpty(User.JMBG) || String.IsNullOrEmpty(User.Residence)
                 || String.IsNullOrEmpty(User.Username)|| parameter as PasswordBox == null
-                || SelctedType==null)
+                || SelctedType==null|| String.IsNullOrEmpty((parameter as PasswordBox).Password))
             {
                 return false;
             }

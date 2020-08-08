@@ -48,26 +48,45 @@
             <ColumnDefinition Width="100" />
             <ColumnDefinition Width="120" />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0"
+        <!--<StackPanel Grid.Row="0"
                     Visibility="{Binding ViewEmployeesSign, UpdateSourceTrigger=PropertyChanged}"
                     Grid.Column="2">
             <Label>Nesto pise:</Label>
+        </StackPanel>-->
+        <StackPanel Grid.Row="0"
+                    Visibility="{Binding IsSystemAdmin, UpdateSourceTrigger=PropertyChanged}"
+                    Grid.Column="0">
+            <Label>You logged in as System administrator</Label>
+        </StackPanel>
+        <StackPanel Grid.Row="0"
+                    Visibility="{Binding IsTeamAdmin, UpdateSourceTrigger=PropertyChanged}"
+                    Grid.Column="0">
+            <Label>You logged in as Team administrator</Label>
+        </StackPanel>
+        <StackPanel Grid.Row="0"
+                    Visibility="{Binding IsLocalAdmin, UpdateSourceTrigger=PropertyChanged}"
+                    Grid.Column="0">
+            <Label>You logged in as Local administrator</Label>
         </StackPanel>
         <StackPanel Visibility="{Binding ViewMainMenu, UpdateSourceTrigger=PropertyChanged}"
                     Grid.Row="1"
                     Grid.Column="0"
                     Orientation="Vertical"
                     VerticalAlignment="Center">
-            <Button Command="{Binding AddSector}"
-                    Content="Add sector"
-                    Visibility="{Binding IsSystemAdmin,
-                    UpdateSourceTrigger=PropertyChanged}" />
-            <Button Command="{Binding AsEmployee}"
+          
+             
+            <Button Command="{Binding ShowSectors}"
                     Visibility="{Binding IsSystemAdmin,
                     UpdateSourceTrigger=PropertyChanged}"
                     Content="Sectors" />
-            <Button Command="{Binding Back}"
-                    Content="Back" />
+            <Button Command="{Binding ShowPositions}"
+                    Visibility="{Binding IsSystemAdmin,
+                    UpdateSourceTrigger=PropertyChanged}"
+                    Content="Positions" />
+            <Button Command="{Binding Logout}"
+                    Content="Logout" />
+            <Button Command="{Binding Close}"
+                    Content="Close" />
         </StackPanel>
     </Grid>
 </Window>
