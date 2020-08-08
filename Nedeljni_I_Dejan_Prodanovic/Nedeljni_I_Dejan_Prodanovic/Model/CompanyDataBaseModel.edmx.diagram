@@ -28,6 +28,8 @@
         <AssociationConnector Association="CompanyDataModel.FK__tblManage__UserI__3D5E1FD2" ManuallyRouted="false" />
         <AssociationConnector Association="CompanyDataModel.FK__tblProjec__Contr__4CA06362" ManuallyRouted="false" />
         <AssociationConnector Association="CompanyDataModel.FK__tblProjec__Proje__4D94879B" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CompanyDataModel.vwEmployee" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="CompanyDataModel.vwManager" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

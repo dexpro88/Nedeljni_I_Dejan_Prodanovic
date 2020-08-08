@@ -20,7 +20,9 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
         EmployeeRegisterView view;
         IUserService userService;
         ISectorService sectorService;
-
+        IEmployeeService employeeService;
+        IPositionService positionService;
+        IManagerService managerService;
 
         public EmployeeRegisterViewModel(EmployeeRegisterView employeeRegisterView)
         {
@@ -29,42 +31,50 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
 
             userService = new UserService();
             sectorService = new SectorService();
+            employeeService = new EmployeeService();
+            positionService = new PositionService();
+            managerService = new ManagerService();
 
             User = new tblUser();
             Employee = new tblEmployee();
             SectorList = sectorService.GetSectors();
-            if (SectorList.Count==0)
-            {
-                ViewNoSectorMessage = Visibility.Visible;
+            PositionList = positionService.GetPositions();
+            
+            //if (SectorList.Count==0)
+            //{
+            //    ViewNoSectorMessage = Visibility.Visible;
               
-            }
-            else
-            {
-                ViewNoSectorMessage = Visibility.Hidden;
+            //}
+            //else
+            //{
+            //    ViewNoSectorMessage = Visibility.Hidden;
                 
-            }
+            //}
+          
         }
 
 
 
-        private Visibility viewNoSectorMessage;
-        public Visibility ViewNoSectorMessage
-        {
-            get
-            {
-                return viewNoSectorMessage;
-            }
-            set
-            {
-                viewNoSectorMessage = value;
-                OnPropertyChanged("ViewNoSectorMessage");
-            }
-        }
+        //private Visibility viewNoSectorMessage;
+        //public Visibility ViewNoSectorMessage
+        //{
+        //    get
+        //    {
+        //        return viewNoSectorMessage;
+        //    }
+        //    set
+        //    {
+        //        viewNoSectorMessage = value;
+        //        OnPropertyChanged("ViewNoSectorMessage");
+        //    }
+        //}
+
+     
 
 
 
-        private string selectedSector;
-        public string SelectedSector
+        private tblSector selectedSector;
+        public tblSector SelectedSector
         {
             get
             {
@@ -77,7 +87,19 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             }
         }
 
-
+        private tblPosition selectedPosition;
+        public tblPosition SelectedPosition
+        {
+            get
+            {
+                return selectedPosition;
+            }
+            set
+            {
+                selectedPosition = value;
+                OnPropertyChanged("SelectedPosition");
+            }
+        }
 
         private List<string> qualifications;
         public List<string> Qualifications
@@ -90,6 +112,20 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             {
                 qualifications = value;
                 OnPropertyChanged("Qualifications");
+            }
+        }
+
+        private string qualification;
+        public string Qualification
+        {
+            get
+            {
+                return qualification;
+            }
+            set
+            {
+                qualification = value;
+                OnPropertyChanged("Qualification");
             }
         }
 
@@ -141,6 +177,10 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                 OnPropertyChanged("Employee");
             }
         }
+
+       
+
+
 
         private List<tblSector> sectorList;
         public List<tblSector> SectorList
@@ -232,15 +272,30 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                 User.Password = encryptedString;
                 User = userService.AddUser(User);
 
-                //DateTime today = DateTime.Now;
-                //Admin.ExpiryDate = today.AddDays(7);
-                //Admin.AdministratorType = SelctedType;
-                //Admin.UserID = User.UserID;
+                Employee.SectorID = SelectedSector.SectorID;
+                if (SelectedPosition!=null)
+                {
+                    Employee.PositionID = SelectedPosition.PositionID;
 
-                //adminService.AddAdmin(Admin);
-                //string str = string.Format("You added new admin of type {0}", SelctedType);
-                //MessageBox.Show(str);
-                //view.Close();
+                }
+                
+                Employee.ProfessionalQualifications = Qualification;
+                List<vwManager>managers = managerService.GetManagers();
+                var idList = managers.Select(item => item.ManagerID).ToList();
+
+                Random random = new Random();
+                int index = random.Next(idList.Count);
+                int managerId = idList[index];
+                Employee.ManagerID = managerId;
+
+                employeeService.AddEmployee(Employee);
+                
+
+                //string str = string.Format("You registered as employee\nYour manager is");
+                MessageBox.Show("You registered as employee");
+                LoginView loginView = new LoginView();
+                loginView.Show();
+                view.Close();
 
             }
             catch (Exception ex)
@@ -254,10 +309,11 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
 
             if (String.IsNullOrEmpty(User.FirstName) || String.IsNullOrEmpty(User.LastName)
                 || String.IsNullOrEmpty(User.JMBG) || String.IsNullOrEmpty(User.Residence)
-                || String.IsNullOrEmpty(User.Username)|| String.IsNullOrEmpty(User.Residence)
-                ||String.IsNullOrEmpty(Employee.YearsOfService) 
+                || String.IsNullOrEmpty(Qualification)
+                || String.IsNullOrEmpty(Employee.YearsOfService) 
                 || String.IsNullOrEmpty(User.Username) || parameter as PasswordBox == null
-                || SelectedSector == null|| String.IsNullOrEmpty((parameter as PasswordBox).Password))
+                || SelectedSector == null || String.IsNullOrEmpty((parameter as PasswordBox).Password)
+                || SectorList.Count==0)
             {
                 return false;
             }
@@ -283,7 +339,8 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
         {
             try
             {
-
+                RegisterView registerView = new RegisterView();
+                registerView.Show();
                 view.Close();
 
             }

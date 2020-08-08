@@ -35,5 +35,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Model
         public virtual DbSet<tblRequestForChange> tblRequestForChanges { get; set; }
         public virtual DbSet<tblSector> tblSectors { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
+        public virtual DbSet<vwEmployee> vwEmployees { get; set; }
+        public virtual DbSet<vwManager> vwManagers { get; set; }
     }
 }

@@ -80,5 +80,78 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
                 return null;
             }
         }
+        public List<vwManager> GetManagers()
+        {
+            try
+            {
+                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                {
+                    List<vwManager> list = new List<vwManager>();
+                    list = (from x in context.vwManagers select x).ToList();
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public void DeleteManager(int managerId)
+        {
+            try
+            {
+                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                {
+                    tblManager managerToDelete = (from u in context.tblManagers
+                                                where u.ManagerID == managerId
+                                                  select u).First();
+
+                    tblUser userToDelete = (from u in context.tblUsers
+                                                  where u.UserID == managerToDelete.UserID
+                                                  select u).First();
+
+                    context.tblManagers.Remove(managerToDelete);
+                    context.tblUsers.Remove(userToDelete);
+
+                    context.SaveChanges();
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+            }
+        }
+        public vwManager SetResponsibility(vwManager manager)
+        {
+            try
+            {
+                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                {
+
+                    tblManager managerToEdit = (from u in context.tblManagers
+                                              where u.ManagerID == manager.ManagerID
+                                              select u).First();
+
+
+                    managerToEdit.ResponsibilityLevel = manager.ResponsibilityLevel;
+                   
+
+                    context.SaveChanges();
+
+                  
+                    return manager;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
     }
 }

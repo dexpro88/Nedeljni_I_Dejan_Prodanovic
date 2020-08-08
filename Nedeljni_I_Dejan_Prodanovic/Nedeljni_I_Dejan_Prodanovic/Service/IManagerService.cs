@@ -12,5 +12,8 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         tblManager AddManager(tblManager manager);
         tblManager GetManagerByEmail(string email);
         tblManager GetManagerByUserId(int userId);
+        List<vwManager> GetManagers();
+        void DeleteManager(int managerId);
+        vwManager SetResponsibility(vwManager manager );
     }
 }

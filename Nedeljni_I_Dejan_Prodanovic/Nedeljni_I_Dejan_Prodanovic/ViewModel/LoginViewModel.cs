@@ -112,9 +112,19 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
 
                 if (admin!=null)
                 {
-                    AdminMainView adminMainView = new AdminMainView(admin);
-                    adminMainView.Show();
-                    view.Close();
+                    if (admin.AdministratorType.Equals("System"))
+                    {
+                        AdminMainView adminMainView = new AdminMainView(admin);
+                        adminMainView.Show();
+                        view.Close();
+                    }
+                    else if (admin.AdministratorType.Equals("Local"))
+                    {
+                        LocaldAminMainView localAdminView = new LocaldAminMainView();
+                        localAdminView.Show();
+                        view.Close();
+                    }
+                   
                 }
 
                 tblManager manager = managerService.GetManagerByUserId(user.UserID);

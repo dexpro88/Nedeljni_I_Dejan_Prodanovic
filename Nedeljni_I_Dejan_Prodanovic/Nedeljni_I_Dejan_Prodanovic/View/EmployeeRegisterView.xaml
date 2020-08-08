@@ -54,17 +54,8 @@
         
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Center">
-            <StackPanel  Orientation="Vertical"
-                         Visibility="{Binding ViewNoSectorMessage, UpdateSourceTrigger=PropertyChanged}">
-            <Label FontSize="18"
-                   Content="There are no sectors in database "
-                   VerticalAlignment="Center"
-                   Foreground="White" />
-            <Label FontSize="18"
-                   Content="You can't create employee account "
-                   VerticalAlignment="Center"
-                   Foreground="White" />
-            </StackPanel>
+           
+            
             <Label Content="First Name:" />
             <StackPanel  Orientation="Horizontal">
                 <TextBox Text="{Binding User.FirstName}" />
@@ -106,7 +97,7 @@
             </StackPanel>
             <Label Content="Years of Expierence:" />
             <StackPanel Orientation="Horizontal">
-                <TextBox Text="{Binding User.LastName}" />
+                <TextBox Text="{Binding Employee.YearsOfService}" />
             </StackPanel>
             <Label Content="Gender:" />
             <StackPanel Orientation="Horizontal"
@@ -139,7 +130,7 @@
                           IsEditable="True"
                           ItemsSource="{Binding SectorList, UpdateSourceTrigger=PropertyChanged}"
                           DisplayMemberPath="SectorName"
-                          SelectedItem="{Binding SelctedType, UpdateSourceTrigger=PropertyChanged}" />
+                          SelectedItem="{Binding SelectedSector, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <Label Content="Position:" />
             <StackPanel  Orientation="Horizontal">
@@ -149,7 +140,7 @@
                           IsEditable="True"
                           ItemsSource="{Binding PositionList, UpdateSourceTrigger=PropertyChanged}"
                           DisplayMemberPath="PositionName"
-                          SelectedItem="{Binding SelctedType, UpdateSourceTrigger=PropertyChanged}" />
+                          SelectedItem="{Binding SelectedPosition, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <Label Content="Qualifications:" />
             <StackPanel  Orientation="Horizontal">
@@ -158,7 +149,7 @@
                           Width="200"
                           IsEditable="True"
                           ItemsSource="{Binding Qualifications, UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding SelctedType, UpdateSourceTrigger=PropertyChanged}" />
+                          SelectedItem="{Binding Qualification, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <Label Content="Username:" />
             <StackPanel  Orientation="Horizontal">

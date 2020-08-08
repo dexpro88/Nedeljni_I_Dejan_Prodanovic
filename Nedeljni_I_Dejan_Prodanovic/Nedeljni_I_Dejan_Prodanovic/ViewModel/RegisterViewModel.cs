@@ -1,5 +1,6 @@
 ﻿using Nedeljni_I_Dejan_Prodanovic.Commands;
 using Nedeljni_I_Dejan_Prodanovic.InputDialog;
+using Nedeljni_I_Dejan_Prodanovic.Service;
 using Nedeljni_I_Dejan_Prodanovic.View;
 using System;
 using System.Collections.Generic;
@@ -15,15 +16,16 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
     class RegisterViewModel:ViewModelBase
     {
         RegisterView view;
-         
 
 
-
+        IManagerService managerService;
+        ISectorService sectorService;
+            
         public RegisterViewModel(RegisterView registerView)
         {
             view = registerView;
-           
-
+            managerService = new ManagerService();
+            sectorService = new SectorService();
         }
 
         bool canAsManager = true;
@@ -45,8 +47,24 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
         {
             try
             {
+                if (managerService.GetManagers().Count == 0)
+                {
+                    string str = string.Format("You can't create emplooye account\n" +
+                        "There are no managers in database");
+                    MessageBox.Show(str);
+                    return;
+                }
+
+                if (sectorService.GetSectors().Count == 0)
+                {
+                    string str = string.Format("You can't create emplooye account\n" +
+                        "There are no sectors in database");
+                    MessageBox.Show(str);
+                    return;
+                }
                 EmployeeRegisterView registerView = new EmployeeRegisterView();
-                registerView.Show();
+                registerView.ShowDialog();
+                view.Close();
                
             }
             catch (Exception ex)
