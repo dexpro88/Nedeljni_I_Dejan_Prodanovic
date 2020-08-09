@@ -132,10 +132,12 @@
     <Compile Include="Service\IEmployeeService.cs" />
     <Compile Include="Service\IManagerService.cs" />
     <Compile Include="Service\IPositionService.cs" />
+    <Compile Include="Service\IRequestService.cs" />
     <Compile Include="Service\ISectorService.cs" />
     <Compile Include="Service\IUserService.cs" />
     <Compile Include="Service\ManagerService.cs" />
     <Compile Include="Service\PositionService.cs" />
+    <Compile Include="Service\RequestService.cs" />
     <Compile Include="Service\SectorService.cs" />
     <Compile Include="Service\UserService.cs" />
     <Compile Include="Utility\EncryptionHelper.cs" />
@@ -144,12 +146,15 @@
     <Compile Include="ViewModel\AddPositionViewModel.cs" />
     <Compile Include="ViewModel\AddSectorViewModel.cs" />
     <Compile Include="ViewModel\AdminMainViewModel.cs" />
+    <Compile Include="ViewModel\EditEmployeeViewModel.cs" />
+    <Compile Include="ViewModel\EditManagerViewModel.cs" />
     <Compile Include="ViewModel\EmployeeMainViewModel.cs" />
     <Compile Include="ViewModel\EmployeeRegisterViewModel.cs" />
     <Compile Include="ViewModel\LocalAdminMainViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ManagerMainViewModel.cs" />
     <Compile Include="ViewModel\ManagerRegisterViewModel.cs" />
+    <Compile Include="ViewModel\PositionsForManagerViewModel.cs" />
     <Compile Include="ViewModel\PositionsViewModel.cs" />
     <Compile Include="ViewModel\PredifinedAccountViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
@@ -168,6 +173,12 @@
     </Compile>
     <Compile Include="View\AdminMainView.xaml.cs">
       <DependentUpon>AdminMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditEmployee.xaml.cs">
+      <DependentUpon>EditEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditManager.xaml.cs">
+      <DependentUpon>EditManager.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EmployeeMainView.xaml.cs">
       <DependentUpon>EmployeeMainView.xaml</DependentUpon>
@@ -189,6 +200,9 @@
     </Compile>
     <Compile Include="View\Positions.xaml.cs">
       <DependentUpon>Positions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PositionsForManager.xaml.cs">
+      <DependentUpon>PositionsForManager.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PredifinedAccount.xaml.cs">
       <DependentUpon>PredifinedAccount.xaml</DependentUpon>
@@ -237,6 +251,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\EditEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\EmployeeMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -262,6 +284,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Positions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PositionsForManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

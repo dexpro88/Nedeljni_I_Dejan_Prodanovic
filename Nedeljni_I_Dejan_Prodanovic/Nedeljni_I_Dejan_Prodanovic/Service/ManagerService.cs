@@ -13,7 +13,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
                 {
 
                     tblManager newManager = new tblManager();
@@ -40,7 +40,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
                 {
 
 
@@ -63,7 +63,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
                 {
 
 
@@ -84,7 +84,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
                 {
                     List<vwManager> list = new List<vwManager>();
                     list = (from x in context.vwManagers select x).ToList();
@@ -102,7 +102,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
                 {
                     tblManager managerToDelete = (from u in context.tblManagers
                                                 where u.ManagerID == managerId
@@ -129,7 +129,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
                 {
 
                     tblManager managerToEdit = (from u in context.tblManagers
@@ -158,13 +158,64 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
                 {
                     List<vwEmployee2> list = new List<vwEmployee2>();
                     list = (from x in context.vwEmployee2
                             where x.ManagerID == managerID
                             select x).ToList();
                     return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public void EditManager(tblManager manager)
+        {
+            try
+            {
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                {
+
+                    tblManager managerToEdit = (from u in context.tblManagers
+                                                where u.ManagerID == manager.ManagerID
+                                                select u).First();
+
+                    managerToEdit.Email = manager.Email;
+                    managerToEdit.ReservePassword = manager.ReservePassword;
+                    managerToEdit.OfficeNumber = manager.OfficeNumber;
+                  
+
+                    context.SaveChanges();
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+
+            }
+        }
+
+        public vwManager GetvwManager(int managerId)
+        {
+            try
+            {
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                {
+
+
+                    vwManager manager = (from x in context.vwManagers
+                                          where x.ManagerID == managerId
+                                         select x).First();
+
+                    return manager;
                 }
             }
             catch (Exception ex)

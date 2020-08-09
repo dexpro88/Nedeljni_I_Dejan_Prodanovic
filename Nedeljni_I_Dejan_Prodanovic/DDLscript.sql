@@ -72,11 +72,13 @@ DROP TABLE IF EXISTS tblReport;
 	SectorID int FOREIGN KEY REFERENCES tblSector(SectorID) ON DELETE CASCADE, 
 	PositionID int FOREIGN KEY REFERENCES tblPosition(PositionID) ON DELETE CASCADE,   
 	UserID int FOREIGN KEY REFERENCES tblUser(UserID),
-    ManagerID int FOREIGN KEY REFERENCES tblManager(ManagerID) 
+    ManagerID int FOREIGN KEY REFERENCES tblManager(ManagerID),
+	 
 
 );
 
-
+ALTER TABLE tblEmployee
+ADD IsNewRequest bit;
 
 --we create table tblAdmin
  CREATE TABLE tblAdmin (
@@ -176,7 +178,8 @@ SELECT   dbo.tblEmployee.YearsOfService ,dbo.tblEmployee.Salary,
          dbo.tblEmployee.ManagerID ,dbo.tblEmployee.ProfessionalQualifications,
 		 dbo.tblEmployee.PositionID ,dbo.tblEmployee.SectorID , dbo.tblEmployee.EmployeeID,
          dbo.tblUser.UserID, dbo.tblUser.FirstName, dbo.tblUser.LastName, dbo.tblUser.Gender,
-         dbo.tblUser.JMBG, dbo.tblUser.Residence,dbo.tblUser.MaritalStatus,
+         dbo.tblUser.JMBG, dbo.tblUser.Residence,dbo.tblUser.MaritalStatus, 
+		 dbo.tblEmployee.IsNewRequest,
 		 dbo.tblUser.Username 
 FROM            dbo.tblUser INNER JOIN
             dbo.tblEmployee ON dbo.tblEmployee.UserID = dbo.tblUser.UserID  
@@ -184,5 +187,7 @@ FROM            dbo.tblUser INNER JOIN
             dbo.tblSector ON dbo.tblSector.SectorID = dbo.tblEmployee.SectorID  
            
 GO
+
+ 
 
 insert into tblSector(SectorName)values('default');

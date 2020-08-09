@@ -28,6 +28,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Model
         public string JMBG { get; set; }
         public string Residence { get; set; }
         public string MaritalStatus { get; set; }
+        public Nullable<bool> IsNewRequest { get; set; }
         public string Username { get; set; }
     }
 }

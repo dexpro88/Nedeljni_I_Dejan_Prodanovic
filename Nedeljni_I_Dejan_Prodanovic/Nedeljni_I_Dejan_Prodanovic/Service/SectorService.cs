@@ -13,7 +13,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
                 {
 
                     tblSector newSector = new tblSector();
@@ -38,7 +38,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
                 {
 
 
@@ -61,10 +61,12 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
                 {
                     List<tblSector> list = new List<tblSector>();
                     list = (from x in context.tblSectors select x).ToList();
+
+                    list.RemoveAll(x => x.SectorName == "default");
                     return list;
                 }
             }
@@ -78,7 +80,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
                 {
                     tblSector sectorToDelete = (from u in context.tblSectors
                                                 where u.SectorID == sectorId

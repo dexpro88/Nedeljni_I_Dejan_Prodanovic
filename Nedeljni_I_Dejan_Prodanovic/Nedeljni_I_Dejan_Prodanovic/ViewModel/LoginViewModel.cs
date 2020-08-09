@@ -119,12 +119,14 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                         AdminMainView adminMainView = new AdminMainView(admin);
                         adminMainView.Show();
                         view.Close();
+                        return;
                     }
                     else if (admin.AdministratorType.Equals("Local"))
                     {
                         LocaldAminMainView localAdminView = new LocaldAminMainView();
                         localAdminView.Show();
                         view.Close();
+                        return;
                     }
                    
                 }
@@ -143,16 +145,20 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                     ManagerMainView managerMainView = new ManagerMainView(manager);
                     managerMainView.Show();
                     view.Close();
+                    return;
                 }
                 tblEmployee employee = employeeService.GetEmployeeByUserId(user.UserID);
-
+               
                 if (employee != null)
                 {
-                    
+                   
                     EmployeeMainView employeeMainView = new EmployeeMainView(employee);
                     employeeMainView.Show();
                     view.Close();
+                    return;
                 }
+
+                MessageBox.Show("Wrong username or password");
             }
             //else if (UserName.Equals(UserConstants.STOREKEEPER_USER_NAME) &&
             //    password.Equals(UserConstants.STOREKEEPER_PASSWORD))

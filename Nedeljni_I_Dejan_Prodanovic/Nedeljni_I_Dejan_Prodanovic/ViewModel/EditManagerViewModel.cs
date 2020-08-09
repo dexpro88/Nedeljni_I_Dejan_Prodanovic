@@ -15,21 +15,29 @@ using System.Windows.Input;
 
 namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
 {
-    class ManagerRegisterViewModel:ViewModelBase
+    class EditManagerViewModel:ViewModelBase
     {
-        ManagerRegisterView view;
+        EditManager view;
         IUserService userService;
         IManagerService managerService;
+        string oldMail;
+        string oldJMBG;
+        string oldUserName;
 
-        public ManagerRegisterViewModel(ManagerRegisterView managerRegisterView)
+        public EditManagerViewModel(EditManager editManagerView, tblManager managerLogedIn)
         {
-            view = managerRegisterView;
-            
+            view = editManagerView;
+
 
             userService = new UserService();
             managerService = new ManagerService();
             User = new tblUser();
-            Manager = new tblManager();
+            Manager = managerLogedIn;
+            ManagerToEdit = managerService.GetvwManager(Manager.ManagerID);
+
+            oldMail = ManagerToEdit.Email;
+            oldJMBG = ManagerToEdit.JMBG;
+            oldUserName = ManagerToEdit.Username;
         }
 
 
@@ -49,7 +57,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
 
 
 
-        
+
 
         private tblUser user;
         public tblUser User
@@ -100,7 +108,19 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             }
         }
 
-        
+        private vwManager managerToEdit;
+        public vwManager ManagerToEdit
+        {
+            get
+            {
+                return managerToEdit;
+            }
+            set
+            {
+                managerToEdit = value;
+                OnPropertyChanged("ManagerToEdit");
+            }
+        }
 
         private ICommand save;
         public ICommand Save
@@ -120,7 +140,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             try
             {
                 DateTime dateOfBirth;
-                if (!ValidationClass.JMBGisValid(User.JMBG, out dateOfBirth))
+                if (!ValidationClass.JMBGisValid(ManagerToEdit.JMBG, out dateOfBirth))
                 {
                     MessageBox.Show("JMBG is not valid");
                     return;
@@ -134,58 +154,94 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                     return;
                 }
 
-                tblUser userInDb = userService.GetUserByUserName(User.Username);
-
-                if (userInDb!=null)
-                {
-                    string str1 = string.Format("User with this username exists\n" +
-                        "Enter another username");
-                    MessageBox.Show(str1);
-                    return;
-                }
-
-                userInDb = userService.GetUserByJMBG(User.JMBG);
+                tblUser userInDb = userService.GetUserByUserName(ManagerToEdit.Username);
 
                 if (userInDb != null)
                 {
-                    string str1 = string.Format("User with this JMBG exists\n" +
-                        "Enter another JMBG");
-                    MessageBox.Show(str1);
-                    return;
+                    if (userInDb.Username.Equals(oldUserName))
+                    {
+
+                    }
+                    else
+                    {
+                        string str1 = string.Format("User with this username exists\n" +
+                       "Enter another username");
+                        MessageBox.Show(str1);
+                        return;
+                    }
+                   
                 }
 
-                if (!ValidationClass.IsValidEmail(Manager.Email))
+                userInDb = userService.GetUserByJMBG(ManagerToEdit.JMBG);
+
+                if (userInDb != null)
+                {
+                    if (userInDb.JMBG.Equals(oldJMBG))
+                    {
+
+                    }
+                    else
+                    {
+                        string str1 = string.Format("User with this JMBG exists\n" +
+                        "Enter another JMBG");
+                        MessageBox.Show(str1);
+                        return;
+                    }
+                    
+                }
+
+                if (!ValidationClass.IsValidEmail(ManagerToEdit.Email))
                 {
                     MessageBox.Show("Email is not valid");
                     return;
                 }
 
-                tblManager managerInDb = managerService.GetManagerByEmail(Manager.Email);
+                tblManager managerInDb = managerService.GetManagerByEmail(ManagerToEdit.Email);
 
                 if (managerInDb != null)
                 {
-                    string str1 = string.Format("Manager with this email exists\n" +
-                        "Enter another email");
-                    MessageBox.Show(str1);
-                    return;
+                    if (managerInDb.Email.Equals(oldMail))
+                    {
+
+                    }else
+                    {
+                        string str1 = string.Format("Manager with this email exists\n" +
+                       "Enter another email");
+                        MessageBox.Show(str1);
+                        return;
+                    }
+                   
                 }
                 var passwordBox = parameter as PasswordBox;
                 var password = passwordBox.Password;
 
                 string encryptedString = EncryptionHelper.Encrypt(password);
-                User.Gender = Gender;
-                User.MaritalStatus = MartialStatus;
-                User.Password = encryptedString;
-                User = userService.AddUser(User);
+
+                tblUser newUser = CreateUser(ManagerToEdit);
+                newUser.Password = encryptedString;
+
+                //string str3 = string.Format("{0} {1}", newUser.UserID,newUser.FirstName);
+                //MessageBox.Show(str3);
+
+                userService.EditUser(newUser);
 
                 string reservePassword = string.Format("{0}WPF", Manager.ReservePassword);
-                Manager.ReservePassword = reservePassword;
-                Manager.UserID = User.UserID;
-                managerService.AddManager(Manager);
-               
 
-                string str = string.Format("You registered as manager");
+                tblManager newManager = new tblManager();
+
+                newManager.ManagerID = ManagerToEdit.ManagerID;
+                newManager.ReservePassword = reservePassword;
+                newManager.Email = ManagerToEdit.Email;
+                newManager.OfficeNumber = ManagerToEdit.OfficeNumber;
+
+
+                managerService.EditManager(newManager);               
+	   
+                string str = string.Format("You succesfully edited you profile");
                 MessageBox.Show(str);
+
+                //ManagerMainView managerMainView = new ManagerMainView(Manager);
+                //managerMainView.Show();
                 view.Close();
             }
             catch (Exception ex)
@@ -197,12 +253,12 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
         private bool CanSaveExecute(object parameter)
         {
 
-            if (String.IsNullOrEmpty(User.FirstName) || String.IsNullOrEmpty(User.LastName)
-                || String.IsNullOrEmpty(User.JMBG) || String.IsNullOrEmpty(User.Residence)
-                || String.IsNullOrEmpty(User.Username) || parameter as PasswordBox == null
-                || String.IsNullOrEmpty(Manager.Email) || String.IsNullOrEmpty(Manager.ReservePassword)
-                || String.IsNullOrEmpty(Manager.OfficeNumber)
-                 
+            if (String.IsNullOrEmpty(ManagerToEdit.FirstName) || String.IsNullOrEmpty(ManagerToEdit.LastName)
+                || String.IsNullOrEmpty(ManagerToEdit.JMBG) || String.IsNullOrEmpty(ManagerToEdit.Residence)
+                || String.IsNullOrEmpty(ManagerToEdit.Username) || parameter as PasswordBox == null
+                || String.IsNullOrEmpty(ManagerToEdit.Email)  
+                || String.IsNullOrEmpty(ManagerToEdit.OfficeNumber)
+
                 || String.IsNullOrEmpty((parameter as PasswordBox).Password))
             {
                 return false;
@@ -241,6 +297,23 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
         private bool CanCloseExecute()
         {
             return true;
+        }
+
+        tblUser CreateUser(vwManager employee)
+        {
+            tblUser user = new tblUser();
+            user.UserID = employee.UserID;
+            user.FirstName = employee.FirstName;
+            user.LastName = employee.LastName;
+            user.JMBG = employee.JMBG;
+            user.Gender = employee.Gender;
+            user.Residence = employee.Residence;
+            user.MaritalStatus = employee.MaritalStatus;
+            user.Username = employee.Username;
+           
+            return user;
+           
+	 
         }
     }
 }

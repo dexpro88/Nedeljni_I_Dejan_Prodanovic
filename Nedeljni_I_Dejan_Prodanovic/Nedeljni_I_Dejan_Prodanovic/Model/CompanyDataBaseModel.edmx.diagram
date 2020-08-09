@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f28c1d4b8180489fbcddcc932d15b42f" Name="Diagram1">
+      <Diagram DiagramId="25072f847907450aa942bf78fc00f7df" Name="Diagram1">
         <EntityTypeShape EntityType="CompanyDataModel.tblAdmin" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CompanyDataModel.tblDailyReport" Width="1.5" PointX="9.75" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="CompanyDataModel.tblEmployee" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyDataModel.tblEmployee" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CompanyDataModel.tblManager" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CompanyDataModel.tblPosition" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CompanyDataModel.tblProject" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
@@ -15,6 +15,10 @@
         <EntityTypeShape EntityType="CompanyDataModel.tblRequestForChange" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CompanyDataModel.tblSector" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CompanyDataModel.tblUser" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyDataModel.vwEmployee" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyDataModel.vwEmployee1" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyDataModel.vwEmployee2" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyDataModel.vwManager" Width="1.5" PointX="9.75" PointY="5.75" IsExpanded="true" />
         <AssociationConnector Association="CompanyDataModel.FK__tblAdmin__UserID__45F365D3" ManuallyRouted="false" />
         <AssociationConnector Association="CompanyDataModel.FK__tblDailyR__Repor__5441852A" ManuallyRouted="false" />
         <AssociationConnector Association="CompanyDataModel.Project" ManuallyRouted="false" />
@@ -28,10 +32,6 @@
         <AssociationConnector Association="CompanyDataModel.FK__tblManage__UserI__3D5E1FD2" ManuallyRouted="false" />
         <AssociationConnector Association="CompanyDataModel.FK__tblProjec__Contr__4CA06362" ManuallyRouted="false" />
         <AssociationConnector Association="CompanyDataModel.FK__tblProjec__Proje__4D94879B" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="CompanyDataModel.vwEmployee" Width="1.5" PointX="5.375" PointY="0.75" />
-        <EntityTypeShape EntityType="CompanyDataModel.vwManager" Width="1.5" PointX="7.375" PointY="0.75" />
-        <EntityTypeShape EntityType="CompanyDataModel.vwEmployee1" Width="1.5" PointX="9.375" PointY="0.75" />
-        <EntityTypeShape EntityType="CompanyDataModel.vwEmployee2" Width="1.5" PointX="10.375" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

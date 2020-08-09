@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Nedeljni_I_Dejan_Prodanovic.Model;
 
 namespace Nedeljni_I_Dejan_Prodanovic.Service
@@ -13,7 +14,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
                 {
 
                     tblUser newUser = new tblUser();
@@ -45,7 +46,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
                 {
 
 
@@ -68,7 +69,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
                 {
 
 
@@ -91,7 +92,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
                 {
 
 
@@ -107,6 +108,65 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
             {
                 System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
                 return null;
+            }
+        }
+
+        public void DeleteUser(int userId)
+        {
+            try
+            {
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                {
+                    tblUser userToDelete = (from u in context.tblUsers
+                                                where u.UserID == userId
+                                            select u).First();
+
+
+                    context.tblUsers.Remove(userToDelete);
+
+                    context.SaveChanges();
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+            }
+        }
+
+        public void EditUser(tblUser user)
+        {
+            
+            try
+            {
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                {
+                 
+                    tblUser userToEdit = (from u in context.tblUsers
+                                          where u.UserID == user.UserID
+                                          select u).First();              
+               
+                    userToEdit.FirstName = user.FirstName;
+                    userToEdit.LastName = user.LastName;
+                    userToEdit.JMBG = user.JMBG;
+                    userToEdit.Gender = user.Gender;
+                    userToEdit.Residence = user.Residence;
+                    userToEdit.MaritalStatus = user.MaritalStatus;
+                    userToEdit.Username = user.Username;
+                    userToEdit.Password = user.Password;
+
+                    
+                    context.SaveChanges();
+
+                
+
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                
             }
         }
     }

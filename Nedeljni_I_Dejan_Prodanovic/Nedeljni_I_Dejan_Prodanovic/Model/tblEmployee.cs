@@ -30,6 +30,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Model
         public Nullable<int> PositionID { get; set; }
         public Nullable<int> UserID { get; set; }
         public Nullable<int> ManagerID { get; set; }
+        public Nullable<bool> IsNewRequest { get; set; }
     
         public virtual tblManager tblManager { get; set; }
         public virtual tblPosition tblPosition { get; set; }

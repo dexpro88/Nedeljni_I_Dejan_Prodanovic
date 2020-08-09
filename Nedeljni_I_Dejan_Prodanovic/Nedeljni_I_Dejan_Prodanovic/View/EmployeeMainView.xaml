@@ -54,8 +54,10 @@
                     Orientation="Vertical"
                     VerticalAlignment="Center">
          
-            <Button Command="{Binding AsEmployee}"
+            <Button Command="{Binding EditProfile}"
                     Content="Edit Profile" />
+            <Button Command="{Binding EditProfile}"
+                    Content="Add Report" />
             <Button Command="{Binding Logout}"
                     Content="Logout" />
             <Button Command="{Binding Close}"

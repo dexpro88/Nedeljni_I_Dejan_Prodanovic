@@ -13,10 +13,10 @@ namespace Nedeljni_I_Dejan_Prodanovic.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CompanyDataEntities1 : DbContext
+    public partial class CompanyDataEntities2 : DbContext
     {
-        public CompanyDataEntities1()
-            : base("name=CompanyDataEntities1")
+        public CompanyDataEntities2()
+            : base("name=CompanyDataEntities2")
         {
         }
     
@@ -36,8 +36,8 @@ namespace Nedeljni_I_Dejan_Prodanovic.Model
         public virtual DbSet<tblSector> tblSectors { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
         public virtual DbSet<vwEmployee> vwEmployees { get; set; }
-        public virtual DbSet<vwManager> vwManagers { get; set; }
         public virtual DbSet<vwEmployee1> vwEmployee1 { get; set; }
         public virtual DbSet<vwEmployee2> vwEmployee2 { get; set; }
+        public virtual DbSet<vwManager> vwManagers { get; set; }
     }
 }

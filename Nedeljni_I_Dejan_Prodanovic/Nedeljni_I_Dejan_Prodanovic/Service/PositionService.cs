@@ -13,7 +13,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
                 {
 
                     tblPosition newPositon = new tblPosition();
@@ -38,7 +38,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
                 {
 
 
@@ -61,7 +61,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
                 {
                     List<tblPosition> list = new List<tblPosition>();
                     list = (from x in context.tblPositions select x).ToList();
@@ -78,7 +78,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
                 {
                     tblPosition positionToDelete = (from u in context.tblPositions
                                                 where u.PositionID == positionId

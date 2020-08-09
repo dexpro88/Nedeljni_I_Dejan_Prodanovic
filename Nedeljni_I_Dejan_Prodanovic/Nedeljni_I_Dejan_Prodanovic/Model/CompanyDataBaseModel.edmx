@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CompanyDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CompanyDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblAdmin">
           <Key>
             <PropertyRef Name="AdminID" />
@@ -36,6 +36,7 @@
           <Property Name="PositionID" Type="int" />
           <Property Name="UserID" Type="int" />
           <Property Name="ManagerID" Type="int" />
+          <Property Name="IsNewRequest" Type="bit" />
         </EntityType>
         <EntityType Name="tblManager">
           <Key>
@@ -178,6 +179,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwEmployee2' does not have a prima
           <Property Name="JMBG" Type="varchar" MaxLength="50" />
           <Property Name="Residence" Type="varchar" MaxLength="50" />
           <Property Name="MaritalStatus" Type="varchar" MaxLength="50" />
+          <Property Name="IsNewRequest" Type="bit" />
           <Property Name="Username" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -430,6 +432,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
     [vwEmployee2].[JMBG] AS [JMBG], 
     [vwEmployee2].[Residence] AS [Residence], 
     [vwEmployee2].[MaritalStatus] AS [MaritalStatus], 
+    [vwEmployee2].[IsNewRequest] AS [IsNewRequest], 
     [vwEmployee2].[Username] AS [Username]
     FROM [dbo].[vwEmployee2] AS [vwEmployee2]</DefiningQuery>
           </EntitySet>
@@ -503,7 +506,8 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
             <End Role="tblDailyReport" EntitySet="tblDailyReport" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CompanyDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -541,6 +545,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
           <Property Name="PositionID" Type="Int32" />
           <Property Name="UserID" Type="Int32" />
           <Property Name="ManagerID" Type="Int32" />
+          <Property Name="IsNewRequest" Type="Boolean" />
           <NavigationProperty Name="tblManager" Relationship="Self.FK__tblEmploy__Manag__4316F928" FromRole="tblEmployee" ToRole="tblManager" />
           <NavigationProperty Name="tblPosition" Relationship="Self.FK__tblEmploy__Posit__412EB0B6" FromRole="tblEmployee" ToRole="tblPosition" />
           <NavigationProperty Name="tblSector" Relationship="Self.FK__tblEmploy__Secto__403A8C7D" FromRole="tblEmployee" ToRole="tblSector" />
@@ -642,6 +647,85 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
           <NavigationProperty Name="tblAdmins" Relationship="Self.FK__tblAdmin__UserID__45F365D3" FromRole="tblUser" ToRole="tblAdmin" />
           <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__UserI__4222D4EF" FromRole="tblUser" ToRole="tblEmployee" />
           <NavigationProperty Name="tblManagers" Relationship="Self.FK__tblManage__UserI__3D5E1FD2" FromRole="tblUser" ToRole="tblManager" />
+        </EntityType>
+        <EntityType Name="vwEmployee">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="YearsOfService" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Salary" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ManagerID" Type="Int32" />
+          <Property Name="ProfessionalQualifications" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PositionID" Type="Int32" />
+          <Property Name="SectorID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JMBG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Residence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MaritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vwEmployee1">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="YearsOfService" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Salary" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ManagerID" Type="Int32" />
+          <Property Name="ProfessionalQualifications" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PositionID" Type="Int32" />
+          <Property Name="SectorID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JMBG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Residence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MaritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vwEmployee2">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="YearsOfService" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Salary" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ManagerID" Type="Int32" />
+          <Property Name="ProfessionalQualifications" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PositionID" Type="Int32" />
+          <Property Name="SectorID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JMBG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Residence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MaritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsNewRequest" Type="Boolean" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vwManager">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="NumberOfSuccesfullProjects" Type="Int32" />
+          <Property Name="OfficeNumber" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="ManagerID" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ResponsibilityLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JMBG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Residence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MaritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__tblAdmin__UserID__45F365D3">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
@@ -809,7 +893,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CompanyDataEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CompanyDataEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tblAdmins" EntityType="Self.tblAdmin" />
           <EntitySet Name="tblDailyReports" EntityType="Self.tblDailyReport" />
           <EntitySet Name="tblEmployees" EntityType="Self.tblEmployee" />
@@ -820,6 +904,10 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
           <EntitySet Name="tblRequestForChanges" EntityType="Self.tblRequestForChange" />
           <EntitySet Name="tblSectors" EntityType="Self.tblSector" />
           <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <EntitySet Name="vwEmployees" EntityType="Self.vwEmployee" />
+          <EntitySet Name="vwEmployee1" EntityType="Self.vwEmployee1" />
+          <EntitySet Name="vwEmployee2" EntityType="Self.vwEmployee2" />
+          <EntitySet Name="vwManagers" EntityType="Self.vwManager" />
           <AssociationSet Name="FK__tblAdmin__UserID__45F365D3" Association="Self.FK__tblAdmin__UserID__45F365D3">
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblAdmin" EntitySet="tblAdmins" />
@@ -872,95 +960,13 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
             <End Role="tblManager" EntitySet="tblManagers" />
             <End Role="tblProject" EntitySet="tblProjects" />
           </AssociationSet>
-          <EntitySet Name="vwEmployees" EntityType="CompanyDataModel.vwEmployee" />
-          <EntitySet Name="vwManagers" EntityType="CompanyDataModel.vwManager" />
-          <EntitySet Name="vwEmployee1" EntityType="CompanyDataModel.vwEmployee1" />
-          <EntitySet Name="vwEmployee2" EntityType="CompanyDataModel.vwEmployee2" />
         </EntityContainer>
-        <EntityType Name="vwEmployee">
-          <Key>
-            <PropertyRef Name="UserID" />
-          </Key>
-          <Property Name="YearsOfService" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Salary" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="ManagerID" Type="Int32" />
-          <Property Name="ProfessionalQualifications" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PositionID" Type="Int32" />
-          <Property Name="SectorID" Type="Int32" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="JMBG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Residence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MaritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="vwManager">
-          <Key>
-            <PropertyRef Name="ManagerID" />
-            <PropertyRef Name="UserID" />
-          </Key>
-          <Property Name="NumberOfSuccesfullProjects" Type="Int32" />
-          <Property Name="OfficeNumber" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="ManagerID" Type="Int32" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ResponsibilityLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="JMBG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Residence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MaritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="vwEmployee1">
-          <Key>
-            <PropertyRef Name="UserID" />
-          </Key>
-          <Property Name="YearsOfService" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Salary" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="ManagerID" Type="Int32" />
-          <Property Name="ProfessionalQualifications" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PositionID" Type="Int32" />
-          <Property Name="SectorID" Type="Int32" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="JMBG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Residence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MaritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="vwEmployee2">
-          <Key>
-            <PropertyRef Name="EmployeeID" />
-            <PropertyRef Name="UserID" />
-          </Key>
-          <Property Name="YearsOfService" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Salary" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="ManagerID" Type="Int32" />
-          <Property Name="ProfessionalQualifications" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PositionID" Type="Int32" />
-          <Property Name="SectorID" Type="Int32" />
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="JMBG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Residence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MaritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CompanyDataModelStoreContainer" CdmEntityContainer="CompanyDataEntities1">
+        <EntityContainerMapping StorageEntityContainer="CompanyDataModelStoreContainer" CdmEntityContainer="CompanyDataEntities2">
           <EntitySetMapping Name="tblAdmins">
             <EntityTypeMapping TypeName="CompanyDataModel.tblAdmin">
               <MappingFragment StoreEntitySet="tblAdmin">
@@ -993,6 +999,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
                 <ScalarProperty Name="PositionID" ColumnName="PositionID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="IsNewRequest" ColumnName="IsNewRequest" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1083,80 +1090,81 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
           <EntitySetMapping Name="vwEmployees">
             <EntityTypeMapping TypeName="CompanyDataModel.vwEmployee">
               <MappingFragment StoreEntitySet="vwEmployee">
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
-                <ScalarProperty Name="Residence" ColumnName="Residence" />
-                <ScalarProperty Name="JMBG" ColumnName="JMBG" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="SectorID" ColumnName="SectorID" />
-                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
-                <ScalarProperty Name="ProfessionalQualifications" ColumnName="ProfessionalQualifications" />
-                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="YearsOfService" ColumnName="YearsOfService" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vwManagers">
-            <EntityTypeMapping TypeName="CompanyDataModel.vwManager">
-              <MappingFragment StoreEntitySet="vwManager">
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
-                <ScalarProperty Name="Residence" ColumnName="Residence" />
-                <ScalarProperty Name="JMBG" ColumnName="JMBG" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="ResponsibilityLevel" ColumnName="ResponsibilityLevel" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
-                <ScalarProperty Name="OfficeNumber" ColumnName="OfficeNumber" />
-                <ScalarProperty Name="NumberOfSuccesfullProjects" ColumnName="NumberOfSuccesfullProjects" />
+                <ScalarProperty Name="ProfessionalQualifications" ColumnName="ProfessionalQualifications" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="SectorID" ColumnName="SectorID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+                <ScalarProperty Name="Residence" ColumnName="Residence" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="vwEmployee1">
             <EntityTypeMapping TypeName="CompanyDataModel.vwEmployee1">
               <MappingFragment StoreEntitySet="vwEmployee1">
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
-                <ScalarProperty Name="Residence" ColumnName="Residence" />
-                <ScalarProperty Name="JMBG" ColumnName="JMBG" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="SectorID" ColumnName="SectorID" />
-                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
-                <ScalarProperty Name="ProfessionalQualifications" ColumnName="ProfessionalQualifications" />
-                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="YearsOfService" ColumnName="YearsOfService" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="ProfessionalQualifications" ColumnName="ProfessionalQualifications" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="SectorID" ColumnName="SectorID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+                <ScalarProperty Name="Residence" ColumnName="Residence" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="vwEmployee2">
             <EntityTypeMapping TypeName="CompanyDataModel.vwEmployee2">
               <MappingFragment StoreEntitySet="vwEmployee2">
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
-                <ScalarProperty Name="Residence" ColumnName="Residence" />
-                <ScalarProperty Name="JMBG" ColumnName="JMBG" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="SectorID" ColumnName="SectorID" />
-                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
-                <ScalarProperty Name="ProfessionalQualifications" ColumnName="ProfessionalQualifications" />
-                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="YearsOfService" ColumnName="YearsOfService" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="ProfessionalQualifications" ColumnName="ProfessionalQualifications" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="SectorID" ColumnName="SectorID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+                <ScalarProperty Name="Residence" ColumnName="Residence" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="IsNewRequest" ColumnName="IsNewRequest" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwManagers">
+            <EntityTypeMapping TypeName="CompanyDataModel.vwManager">
+              <MappingFragment StoreEntitySet="vwManager">
+                <ScalarProperty Name="NumberOfSuccesfullProjects" ColumnName="NumberOfSuccesfullProjects" />
+                <ScalarProperty Name="OfficeNumber" ColumnName="OfficeNumber" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ResponsibilityLevel" ColumnName="ResponsibilityLevel" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+                <ScalarProperty Name="Residence" ColumnName="Residence" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

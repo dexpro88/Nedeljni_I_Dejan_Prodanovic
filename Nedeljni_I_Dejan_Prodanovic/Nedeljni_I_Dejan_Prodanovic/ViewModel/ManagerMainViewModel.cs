@@ -34,6 +34,14 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                 viewEmployeesSign = Visibility.Visible;
 
             }
+            if (Manager.ResponsibilityLevel.Equals("2"))
+            {
+                ViewAddPosition = Visibility.Visible;
+            }
+            else
+            {
+                ViewAddPosition = Visibility.Hidden;
+            }
         }
 
 
@@ -48,6 +56,20 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             {
                 viewEmployeesSign = value;
                 OnPropertyChanged("ViewEmployeesSign");
+            }
+        }
+
+        private Visibility viewAddPosition;
+        public Visibility ViewAddPosition
+        {
+            get
+            {
+                return viewAddPosition;
+            }
+            set
+            {
+                viewAddPosition = value;
+                OnPropertyChanged("ViewAddPosition");
             }
         }
 
@@ -80,7 +102,71 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
         }
 
 
+        private ICommand addPosition;
+        public ICommand AddPosition
+        {
+            get
+            {
+                if (addPosition == null)
+                {
+                    addPosition = new RelayCommand(param => AddPositionExecute(),
+                        param => CanAddPositionExecute());
+                }
+                return addPosition;
+            }
+        }
 
+        private void AddPositionExecute()
+        {
+            try
+            {
+                AddPosition addPosition = new AddPosition();
+                addPosition.ShowDialog();
+                //PositionList = positionService.GetPositions();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        private bool CanAddPositionExecute()
+        {
+            return true;
+        }
+
+        private ICommand showPositions;
+        public ICommand ShowPositions
+        {
+            get
+            {
+                if (showPositions == null)
+                {
+                    showPositions = new RelayCommand(param => ShowPositionsExecute(),
+                        param => CanShowPositionsExecute());
+                }
+                return showPositions;
+            }
+        }
+
+        private void ShowPositionsExecute()
+        {
+            try
+            {
+                PositionsForManager positionsView = new PositionsForManager();
+                positionsView.ShowDialog();
+                //PositionList = positionService.GetPositions();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        private bool CanShowPositionsExecute()
+        {
+            return true;
+        }
 
         private ICommand showEmployees;
         public ICommand ShowEmployees
@@ -111,6 +197,39 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             }
         }
         private bool CanShowEmployeesExecute()
+        {
+            return true;
+        }
+
+        private ICommand editManager;
+        public ICommand EditManager
+        {
+            get
+            {
+                if (editManager == null)
+                {
+                    editManager = new RelayCommand(param =>EditManagerExecute(),
+                        param => CanEditManagerExecute());
+                }
+                return editManager;
+            }
+        }
+
+        private void EditManagerExecute()
+        {
+            try
+            {
+                EditManager editManager = new EditManager(Manager);
+                editManager.ShowDialog();
+                
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        private bool CanEditManagerExecute()
         {
             return true;
         }

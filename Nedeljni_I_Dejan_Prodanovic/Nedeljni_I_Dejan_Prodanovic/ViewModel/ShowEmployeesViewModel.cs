@@ -17,19 +17,26 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
         ShowEmployees view;
 
         IManagerService managerService;
+        IUserService userService;
+        IEmployeeService employeeService;
 
-        public ShowEmployeesViewModel(ShowEmployees employeeService,tblManager managerLogedIn)
+        public ShowEmployeesViewModel(ShowEmployees employeeView,tblManager managerLogedIn)
         {
-            view = employeeService;
+            view = employeeView;
 
 
             managerService = new ManagerService();
+            userService = new UserService();
+            employeeService = new EmployeeService();
+
             Manager = managerLogedIn;
 
             Employee = new vwEmployee2();
             EmployeeList = managerService.GetEmployeesOfManager(Manager.ManagerID);
 
-           
+            //EmployeeList = FilterEmployeesOfManager(EmployeeList);
+
+
         }
 
         private vwEmployee2 employee;
@@ -103,9 +110,11 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                     switch (result)
                     {
                         case MessageBoxResult.Yes:
-                            //sectorService.DeleteSector(sectorId);
-                            //SectorList = sectorService.GetSectors().ToList();
+                            userService.DeleteUser((int)Employee.UserID);
+                            employeeService.DeleteEmployee(Employee.EmployeeID);
 
+                            EmployeeList = managerService.GetEmployeesOfManager(Manager.ManagerID);
+                         
                             break;
                     }
 
@@ -218,6 +227,23 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
         private bool CanBackExecute()
         {
             return true;
+        }
+
+        private List<vwEmployee2> FilterEmployeesOfManager(List<vwEmployee2>employees)
+        {
+            List<vwEmployee2> newList = new List<vwEmployee2>();
+            foreach (var employee in employees)
+            {
+                if (employee.IsNewRequest!=null)
+                {
+                    if (!(bool)employee.IsNewRequest)
+                    {
+                        newList.Add(employee);
+                    }
+                }
+               
+            }
+            return newList;
         }
 
     }

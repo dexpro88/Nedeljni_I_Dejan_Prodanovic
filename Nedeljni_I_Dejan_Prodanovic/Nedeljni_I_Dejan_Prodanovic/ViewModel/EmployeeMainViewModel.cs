@@ -23,7 +23,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
 
             //Manager = managerLogedIn;
             view = employeeMainView;
-           
+            Employee = employeeLogedIn;
         }
 
 
@@ -43,45 +43,46 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
 
        
 
-        private tblManager manager;
-        public tblManager Manager
+        private tblEmployee employee;
+        public tblEmployee Employee
         {
             get
             {
-                return manager;
+                return employee;
             }
             set
             {
-                manager = value;
-                OnPropertyChanged("Manager");
+                employee = value;
+                OnPropertyChanged("Employee");
             }
         }
 
 
 
 
-        private ICommand showEmployees;
-        public ICommand ShowEmployees
+        
+
+        private ICommand editProfile;
+        public ICommand EditProfile
         {
             get
             {
-                if (showEmployees == null)
+                if (editProfile == null)
                 {
-                    showEmployees = new RelayCommand(param => ShowEmployeesExecute(),
-                        param => CanShowEmployeesExecute());
+                    editProfile = new RelayCommand(param => EditProfileExecute(),
+                        param => CanEditProfileExecute());
                 }
-                return showEmployees;
+                return editProfile;
             }
         }
 
-        private void ShowEmployeesExecute()
+        private void EditProfileExecute()
         {
             try
             {
-                ShowEmployees showEmployees = new ShowEmployees(Manager);
-                
-                showEmployees.Show();
-                view.Close();
+                EditEmployee editEmployee = new EditEmployee(Employee);
+                editEmployee.ShowDialog();
+
 
             }
             catch (Exception ex)
@@ -89,7 +90,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                 MessageBox.Show(ex.ToString());
             }
         }
-        private bool CanShowEmployeesExecute()
+        private bool CanEditProfileExecute()
         {
             return true;
         }

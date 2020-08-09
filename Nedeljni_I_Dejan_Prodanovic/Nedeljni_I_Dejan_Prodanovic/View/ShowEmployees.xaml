@@ -80,7 +80,7 @@
                         <DataTemplate>
                             <Button Width="100"
                                     Height="20"
-                                    Command="{Binding Path=DataContext.DeleteSector, RelativeSource= {RelativeSource FindAncestor,
+                                    Command="{Binding Path=DataContext.DeleteEmployee, RelativeSource= {RelativeSource FindAncestor,
                                        AncestorType={x:Type DataGrid}},UpdateSourceTrigger=PropertyChanged}"
                                     Content="Delete" />
                         </DataTemplate>
