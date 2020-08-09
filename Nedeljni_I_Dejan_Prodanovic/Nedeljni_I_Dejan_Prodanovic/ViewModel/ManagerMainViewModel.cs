@@ -201,6 +201,38 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             return true;
         }
 
+        private ICommand addProject;
+        public ICommand AddProject
+        {
+            get
+            {
+                if (addProject == null)
+                {
+                    addProject = new RelayCommand(param => AddProjectExecute(),
+                        param => CanAddProjectExecute());
+                }
+                return addProject;
+            }
+        }
+
+        private void AddProjectExecute()
+        {
+            try
+            {
+                AddProject addEmployee = new AddProject();
+                addEmployee.ShowDialog();
+              
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        private bool CanAddProjectExecute()
+        {
+            return true;
+        }
         private ICommand editManager;
         public ICommand EditManager
         {

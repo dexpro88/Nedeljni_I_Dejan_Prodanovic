@@ -14,5 +14,6 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         void DeleteEmployee(int employeeId);
         vwEmployee2 GetvwEmployeeByEmployeeId(int employeeId);
         tblEmployee GetEmployeeByEmployeeId(int employeeId);
+        tblRequestForChange AddRequest(tblRequestForChange request);
     }
 }

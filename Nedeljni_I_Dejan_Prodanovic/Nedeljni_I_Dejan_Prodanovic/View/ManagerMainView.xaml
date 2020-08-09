@@ -74,7 +74,7 @@
                     Visibility="{Binding ViewAddPosition,
                     UpdateSourceTrigger=PropertyChanged}"
                     Content="Positions" />
-            <Button Command="{Binding Logout}"
+            <Button Command="{Binding AddProject}"
                     Content="Add Project" />
             <Button Command="{Binding Logout}"
                     Content="Logout" />

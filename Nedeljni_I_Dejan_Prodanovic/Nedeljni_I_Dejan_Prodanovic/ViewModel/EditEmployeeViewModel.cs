@@ -47,7 +47,8 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             //Employee = new tblEmployee();
             SectorList = sectorService.GetSectors();
             PositionList = positionService.GetPositions();
-            oldEmployee = employeeService.GetEmployeeByUserId(employeeLogedIn.EmployeeID);
+            //MessageBox.Show(employeeLogedIn.EmployeeID.ToString());
+            oldEmployee = employeeLogedIn;
 
             oldUserName = EmployeeToEdit.Username;
             oldJMBG = EmployeeToEdit.JMBG;
@@ -303,8 +304,13 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
 
                 newEmployee = employeeService.AddEmployee(newEmployee);
 
+                tblRequestForChange newRequest = new tblRequestForChange();
 
-                requestService.AddRequest(oldEmployee,newEmployee);
+                newRequest.OldEmployeeID = oldEmployee.EmployeeID;
+                newRequest.NewEmployeeID = newEmployee.EmployeeID;
+                newRequest.CreationDate = DateTime.Today;
+
+                employeeService.AddRequest(newRequest);
 
                 //string str = string.Format("You registered as employee\nYour manager is");
                 MessageBox.Show("You send request for changes to your manager");

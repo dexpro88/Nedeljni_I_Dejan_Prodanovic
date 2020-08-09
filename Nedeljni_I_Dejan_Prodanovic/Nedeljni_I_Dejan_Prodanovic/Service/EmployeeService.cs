@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Nedeljni_I_Dejan_Prodanovic.Service
 {
-    class EmployeeService:IEmployeeService
+    class EmployeeService : IEmployeeService
     {
         public tblEmployee AddEmployee(tblEmployee employee)
         {
@@ -22,7 +23,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
                     newEmployee.UserID = employee.UserID;
                     newEmployee.SectorID = employee.SectorID;
                     newEmployee.PositionID = employee.PositionID;
-                    
+
 
                     newEmployee.ProfessionalQualifications = employee.ProfessionalQualifications;
                     newEmployee.ManagerID = employee.ManagerID;
@@ -51,8 +52,8 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
 
 
                     tblEmployee employee = (from x in context.tblEmployees
-                                      where x.UserID == userId
-                                      select x).First();
+                                            where x.UserID == userId
+                                            select x).First();
 
                     return employee;
                 }
@@ -71,7 +72,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
                 using (CompanyDataEntities2 context = new CompanyDataEntities2())
                 {
                     tblEmployee employeeToDelete = (from u in context.tblEmployees
-                                            where u.EmployeeID == employeeId
+                                                    where u.EmployeeID == employeeId
                                                     select u).First();
 
 
@@ -123,6 +124,40 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
                                             select x).First();
 
                     return employee;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public tblRequestForChange AddRequest(tblRequestForChange request)
+        {
+            try
+            {
+               
+                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                {
+
+                   
+                    //newRequest.OldEmployeeID = employeeOld.EmployeeID;
+                    //newRequest.NewEmployeeID = employeeNew.EmployeeID;
+                    //newRequest.CreationDate = DateTime.Today;
+
+                    context.tblRequestForChanges.Add(request);
+                    context.SaveChanges();
+
+                    return request;
+
+                    //tblRequestForChange req = (from x in context.tblRequestForChanges
+                    //                        where x.ID == 1
+                    //                        select x).First();
+
+                    //MessageBox.Show(req.ID.ToString());
+                    //return null;
+
                 }
             }
             catch (Exception ex)

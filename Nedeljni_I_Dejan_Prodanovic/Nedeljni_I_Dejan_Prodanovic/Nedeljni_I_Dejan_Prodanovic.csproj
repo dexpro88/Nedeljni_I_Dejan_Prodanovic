@@ -168,6 +168,9 @@
     <Compile Include="View\AddPosition.xaml.cs">
       <DependentUpon>AddPosition.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AddProject.xaml.cs">
+      <DependentUpon>AddProject.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddSector.xaml.cs">
       <DependentUpon>AddSector.xaml</DependentUpon>
     </Compile>
@@ -240,6 +243,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddPosition.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
