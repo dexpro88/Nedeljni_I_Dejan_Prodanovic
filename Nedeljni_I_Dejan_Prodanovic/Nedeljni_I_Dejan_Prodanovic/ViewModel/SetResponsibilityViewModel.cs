@@ -89,7 +89,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             try
             {     
                 Manager.ResponsibilityLevel = Responsibility;
-                MessageBox.Show(Manager.ResponsibilityLevel);
+                
                 menagerService.SetResponsibility(Manager);
 
                 string str1 = string.Format("You set manager responsibility to {0}", 

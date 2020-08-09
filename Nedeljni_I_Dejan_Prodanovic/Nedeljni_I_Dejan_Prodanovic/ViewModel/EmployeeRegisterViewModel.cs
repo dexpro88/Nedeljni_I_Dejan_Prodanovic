@@ -287,6 +287,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                 int index = random.Next(idList.Count);
                 int managerId = idList[index];
                 Employee.ManagerID = managerId;
+                Employee.UserID = User.UserID;
 
                 employeeService.AddEmployee(Employee);
                 

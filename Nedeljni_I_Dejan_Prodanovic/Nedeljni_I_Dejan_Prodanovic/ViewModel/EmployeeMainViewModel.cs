@@ -12,58 +12,36 @@ using System.Windows.Input;
 
 namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
 {
-    class ManagerMainViewModel:ViewModelBase
+    class EmployeeMainViewModel:ViewModelBase
     {
 
-        ManagerMainView view;
-        IManagerService managerService;
+        EmployeeMainView view;
+       
 
-        public ManagerMainViewModel(ManagerMainView managerMainView, tblManager managerLogedIn)
+        public EmployeeMainViewModel(EmployeeMainView employeeMainView, tblEmployee employeeLogedIn)
         {
 
-            Manager = managerLogedIn;
-            view = managerMainView;
-            managerService = new ManagerService();
-
-            if (managerService.GetEmployeesOfManager(Manager.ManagerID).Count == 0)
-            {
-                viewEmployeesSign = Visibility.Hidden;
-            }
-            else
-            {
-                viewEmployeesSign = Visibility.Visible;
-
-            }
+            //Manager = managerLogedIn;
+            view = employeeMainView;
+           
         }
 
 
-        private Visibility viewEmployeesSign;
-        public Visibility ViewEmployeesSign
-        {
-            get
-            {
-                return viewEmployeesSign;
-            }
-            set
-            {
-                viewEmployeesSign = value;
-                OnPropertyChanged("ViewEmployeesSign");
-            }
-        }
+        //private Visibility viewEmployeesSign;
+        //public Visibility ViewEmployeesSign
+        //{
+        //    get
+        //    {
+        //        return viewEmployeesSign;
+        //    }
+        //    set
+        //    {
+        //        viewEmployeesSign = value;
+        //        OnPropertyChanged("ViewEmployeesSign");
+        //    }
+        //}
 
-        private Visibility viewMainMenu = Visibility.Visible;
-        public Visibility ViewMainMenu
-        {
-            get
-            {
-                return viewMainMenu;
-            }
-            set
-            {
-                viewMainMenu = value;
-                OnPropertyChanged("ViewMainMenu");
-            }
-        }
+       
 
         private tblManager manager;
         public tblManager Manager
@@ -89,7 +67,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             {
                 if (showEmployees == null)
                 {
-                    showEmployees = new RelayCommand(param => ShowEmployeesExecute(), 
+                    showEmployees = new RelayCommand(param => ShowEmployeesExecute(),
                         param => CanShowEmployeesExecute());
                 }
                 return showEmployees;
@@ -101,6 +79,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             try
             {
                 ShowEmployees showEmployees = new ShowEmployees(Manager);
+                
                 showEmployees.Show();
                 view.Close();
 

@@ -21,6 +21,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
                     newUser.LastName = user.LastName;
                     newUser.JMBG = user.JMBG;
                     newUser.Gender = user.Gender;
+                    newUser.Residence = user.Residence;
                     newUser.MaritalStatus = user.MaritalStatus;
                     newUser.Username = user.Username;
                     newUser.Password = user.Password;

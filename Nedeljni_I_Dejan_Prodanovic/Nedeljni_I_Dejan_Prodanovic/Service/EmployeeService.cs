@@ -17,12 +17,19 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
                 {
 
                     tblEmployee newEmployee = new tblEmployee();
-                    //newEmployee.UserID = admin.UserID;
-                    //newEmployee.ExpiryDate = admin.ExpiryDate;
-                    //newEmployee.AdministratorType = admin.AdministratorType;
+                    newEmployee.EmployeeID = employee.EmployeeID;
+                    newEmployee.YearsOfService = employee.YearsOfService;
+                    newEmployee.UserID = employee.UserID;
+                    newEmployee.SectorID = employee.SectorID;
+                    newEmployee.PositionID = employee.PositionID;
+                    
 
-                    //context.tblAdmins.Add(newAdmin);
-                    //context.SaveChanges();
+                    newEmployee.ProfessionalQualifications = employee.ProfessionalQualifications;
+                    newEmployee.ManagerID = employee.ManagerID;
+
+
+                    context.tblEmployees.Add(newEmployee);
+                    context.SaveChanges();
 
                     return newEmployee;
 

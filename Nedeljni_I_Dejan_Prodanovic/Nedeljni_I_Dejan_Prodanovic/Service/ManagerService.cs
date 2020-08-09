@@ -153,5 +153,25 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
                 return null;
             }
         }
+
+        public List<vwEmployee2> GetEmployeesOfManager(int managerID)
+        {
+            try
+            {
+                using (CompanyDataEntities1 context = new CompanyDataEntities1())
+                {
+                    List<vwEmployee2> list = new List<vwEmployee2>();
+                    list = (from x in context.vwEmployee2
+                            where x.ManagerID == managerID
+                            select x).ToList();
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
     }
 }

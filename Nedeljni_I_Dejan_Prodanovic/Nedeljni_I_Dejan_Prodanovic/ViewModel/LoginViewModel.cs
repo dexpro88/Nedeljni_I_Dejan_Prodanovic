@@ -22,6 +22,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
         IUserService userService;
         IAdminService adminService;
         IManagerService managerService;
+        IEmployeeService employeeService;
         ManagerAccesClass managerAcces;
 
         public LoginViewModel(LoginView loginView)
@@ -30,6 +31,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
             userService = new UserService();
             adminService = new AdminService();
             managerService = new ManagerService();
+            employeeService = new EmployeeService();
 
             managerAcces = new ManagerAccesClass();
             managerAcces.ApplicationStarted += WriteRandomStrToFile;
@@ -140,6 +142,15 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                     }
                     ManagerMainView managerMainView = new ManagerMainView(manager);
                     managerMainView.Show();
+                    view.Close();
+                }
+                tblEmployee employee = employeeService.GetEmployeeByUserId(user.UserID);
+
+                if (employee != null)
+                {
+                    
+                    EmployeeMainView employeeMainView = new EmployeeMainView(employee);
+                    employeeMainView.Show();
                     view.Close();
                 }
             }

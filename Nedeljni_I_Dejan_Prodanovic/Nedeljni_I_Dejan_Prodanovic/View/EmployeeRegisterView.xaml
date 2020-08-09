@@ -99,7 +99,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBox Text="{Binding Employee.YearsOfService}" />
             </StackPanel>
-            <Label Content="Gender:" />
+            <Label Content="Martial status:" />
             <StackPanel Orientation="Horizontal"
                         Margin="10">
                 <RadioButton Width="50"

@@ -17,15 +17,18 @@ using System.Windows.Shapes;
 namespace Nedeljni_I_Dejan_Prodanovic.View
 {
     /// <summary>
-    /// Interaction logic for Sectors.xaml
+    /// Interaction logic for ShowEmployees.xaml
     /// </summary>
-    public partial class Sectors : Window
+    public partial class ShowEmployees : Window
     {
-        public Sectors()
+        public ShowEmployees()
         {
             InitializeComponent();
-            DataContext = new SectorsViewModel(this);
         }
-        
+        public ShowEmployees(tblManager manager)
+        {
+            InitializeComponent();
+            DataContext = new ShowEmployeesViewModel(this, manager);
+        }
     }
 }

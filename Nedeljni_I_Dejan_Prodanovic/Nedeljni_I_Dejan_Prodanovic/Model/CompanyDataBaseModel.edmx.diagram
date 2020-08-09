@@ -30,6 +30,8 @@
         <AssociationConnector Association="CompanyDataModel.FK__tblProjec__Proje__4D94879B" ManuallyRouted="false" />
         <EntityTypeShape EntityType="CompanyDataModel.vwEmployee" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="CompanyDataModel.vwManager" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="CompanyDataModel.vwEmployee1" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="CompanyDataModel.vwEmployee2" Width="1.5" PointX="10.375" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
