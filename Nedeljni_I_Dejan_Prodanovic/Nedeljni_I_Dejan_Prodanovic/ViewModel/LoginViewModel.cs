@@ -137,7 +137,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                 {
                     if (string.IsNullOrEmpty(manager.ResponsibilityLevel))
                     {
-                        string str1 = string.Format("You can not login\nAdmin has not gave you" +
+                        string str1 = string.Format("You can not login\nLocal Admin has not gave you" +
                             " responsibility level yet");
                         MessageBox.Show(str1);
                         return;

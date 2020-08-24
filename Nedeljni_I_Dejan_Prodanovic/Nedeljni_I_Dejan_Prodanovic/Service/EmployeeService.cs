@@ -14,7 +14,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
 
                     tblEmployee newEmployee = new tblEmployee();
@@ -47,7 +47,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
 
 
@@ -69,7 +69,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
                     tblEmployee employeeToDelete = (from u in context.tblEmployees
                                                     where u.EmployeeID == employeeId
@@ -93,7 +93,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
 
 
@@ -115,7 +115,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
 
 
@@ -138,7 +138,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
             try
             {
                
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
 
                    

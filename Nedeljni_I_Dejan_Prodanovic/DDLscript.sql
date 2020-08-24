@@ -1,9 +1,9 @@
 --we create database  
-CREATE DATABASE CompanyData;
+CREATE DATABASE MyCompanyDB;
 
 GO
 
-use CompanyData;
+use MyCompanyDB;
 
 GO
 
@@ -68,6 +68,7 @@ DROP TABLE IF EXISTS tblReport;
     EmployeeID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
     YearsOfService varchar(50),
 	Salary decimal,
+	IsNewRequest bit,
 	ProfessionalQualifications varchar(50),
 	SectorID int FOREIGN KEY REFERENCES tblSector(SectorID) ON DELETE CASCADE, 
 	PositionID int FOREIGN KEY REFERENCES tblPosition(PositionID) ON DELETE CASCADE,   
@@ -77,9 +78,7 @@ DROP TABLE IF EXISTS tblReport;
 
 );
 
-ALTER TABLE tblEmployee
-ADD IsNewRequest bit;
-
+ 
 --we create table tblAdmin
  CREATE TABLE tblAdmin (
     AdminID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
@@ -142,7 +141,7 @@ AS
 
 SELECT   dbo.tblEmployee.YearsOfService ,dbo.tblEmployee.Salary,
          dbo.tblEmployee.ManagerID ,dbo.tblEmployee.ProfessionalQualifications,
-		 dbo.tblEmployee.PositionID ,dbo.tblEmployee.SectorID ,
+		 dbo.tblEmployee.PositionID ,dbo.tblEmployee.SectorID ,dbo.tblEmployee.IsNewRequest,
          dbo.tblUser.UserID, dbo.tblUser.FirstName, dbo.tblUser.LastName, dbo.tblUser.Gender,
          dbo.tblUser.JMBG, dbo.tblUser.Residence,dbo.tblUser.MaritalStatus,
 		 dbo.tblUser.Username 
@@ -159,7 +158,7 @@ AS
 
 SELECT   dbo.tblEmployee.YearsOfService ,dbo.tblEmployee.Salary,
          dbo.tblEmployee.ManagerID ,dbo.tblEmployee.ProfessionalQualifications,
-		 dbo.tblEmployee.PositionID ,dbo.tblEmployee.SectorID ,
+		 dbo.tblEmployee.PositionID ,dbo.tblEmployee.SectorID ,dbo.tblEmployee.IsNewRequest,
          dbo.tblUser.UserID, dbo.tblUser.FirstName, dbo.tblUser.LastName, dbo.tblUser.Gender,
          dbo.tblUser.JMBG, dbo.tblUser.Residence,dbo.tblUser.MaritalStatus,
 		 dbo.tblUser.Username 
@@ -175,11 +174,11 @@ CREATE VIEW vwEmployee2
 AS
 
 SELECT   dbo.tblEmployee.YearsOfService ,dbo.tblEmployee.Salary,
-         dbo.tblEmployee.ManagerID ,dbo.tblEmployee.ProfessionalQualifications,
+         dbo.tblEmployee.ManagerID ,dbo.tblEmployee.ProfessionalQualifications,dbo.tblEmployee.IsNewRequest,
 		 dbo.tblEmployee.PositionID ,dbo.tblEmployee.SectorID , dbo.tblEmployee.EmployeeID,
          dbo.tblUser.UserID, dbo.tblUser.FirstName, dbo.tblUser.LastName, dbo.tblUser.Gender,
          dbo.tblUser.JMBG, dbo.tblUser.Residence,dbo.tblUser.MaritalStatus, 
-		 dbo.tblEmployee.IsNewRequest,
+		 
 		 dbo.tblUser.Username 
 FROM            dbo.tblUser INNER JOIN
             dbo.tblEmployee ON dbo.tblEmployee.UserID = dbo.tblUser.UserID  
@@ -189,5 +188,20 @@ FROM            dbo.tblUser INNER JOIN
 GO
 
  
+ GO
+CREATE VIEW vwManager
+AS
 
-insert into tblSector(SectorName)values('default');
+SELECT   dbo.tblManager.ManagerID ,dbo.tblManager.Email,
+         dbo.tblManager.ResponsibilityLevel ,dbo.tblManager.NumberOfSuccesfullProjects,
+		 dbo.tblManager.Salary ,dbo.tblManager.OfficeNumber , dbo.tblManager.UserID,
+         dbo.tblUser.FirstName, dbo.tblUser.LastName, dbo.tblUser.Gender,
+         dbo.tblUser.JMBG, dbo.tblUser.Residence,dbo.tblUser.MaritalStatus, 
+	 
+		 dbo.tblUser.Username 
+FROM            dbo.tblUser INNER JOIN
+            dbo.tblManager ON dbo.tblManager.UserID = dbo.tblUser.UserID  
+			 
+           
+GO
+insert into tblSector(SectorName)values('default'); 

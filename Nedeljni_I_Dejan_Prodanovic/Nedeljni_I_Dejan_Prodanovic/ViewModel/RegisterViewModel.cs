@@ -135,6 +135,15 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                                     {
                                         MessageBox.Show("You can't create manager account.\n" +
                                             "Create employee account.");
+
+                                        if (managerService.GetManagers().Count == 0)
+                                        {
+                                            string str = string.Format("You can't create emplooye account\n" +
+                                                "There are no managers in database");
+                                            MessageBox.Show(str);
+                                            return;
+                                        }
+
                                         canAsManager = false;
                                         EmployeeRegisterView employeeRegisterView =
                                             new EmployeeRegisterView();

@@ -14,12 +14,13 @@ namespace Nedeljni_I_Dejan_Prodanovic.Model
     
     public partial class vwManager
     {
-        public Nullable<int> NumberOfSuccesfullProjects { get; set; }
-        public string OfficeNumber { get; set; }
         public int ManagerID { get; set; }
         public string Email { get; set; }
         public string ResponsibilityLevel { get; set; }
-        public int UserID { get; set; }
+        public Nullable<int> NumberOfSuccesfullProjects { get; set; }
+        public Nullable<decimal> Salary { get; set; }
+        public string OfficeNumber { get; set; }
+        public Nullable<int> UserID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Gender { get; set; }

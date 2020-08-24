@@ -13,7 +13,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
 
                     tblManager newManager = new tblManager();
@@ -40,7 +40,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
 
 
@@ -63,7 +63,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
 
 
@@ -84,7 +84,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
                     List<vwManager> list = new List<vwManager>();
                     list = (from x in context.vwManagers select x).ToList();
@@ -102,7 +102,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
                     tblManager managerToDelete = (from u in context.tblManagers
                                                 where u.ManagerID == managerId
@@ -129,7 +129,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
 
                     tblManager managerToEdit = (from u in context.tblManagers
@@ -158,7 +158,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
                     List<vwEmployee2> list = new List<vwEmployee2>();
                     list = (from x in context.vwEmployee2
@@ -178,7 +178,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
 
                     tblManager managerToEdit = (from u in context.tblManagers
@@ -207,7 +207,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
 
 

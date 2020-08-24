@@ -14,7 +14,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
 
                     tblUser newUser = new tblUser();
@@ -46,7 +46,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
 
 
@@ -69,7 +69,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
 
 
@@ -92,7 +92,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
 
 
@@ -115,7 +115,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         {
             try
             {
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
                     tblUser userToDelete = (from u in context.tblUsers
                                                 where u.UserID == userId
@@ -140,7 +140,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
             
             try
             {
-                using (CompanyDataEntities2 context = new CompanyDataEntities2())
+                using (MyCompanyDBEntities context = new MyCompanyDBEntities())
                 {
                  
                     tblUser userToEdit = (from u in context.tblUsers

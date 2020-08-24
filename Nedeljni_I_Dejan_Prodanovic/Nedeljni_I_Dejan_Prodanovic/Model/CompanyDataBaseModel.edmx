@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CompanyDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MyCompanyDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblAdmin">
           <Key>
             <PropertyRef Name="AdminID" />
@@ -31,12 +31,12 @@
           <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="YearsOfService" Type="varchar" MaxLength="50" />
           <Property Name="Salary" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="IsNewRequest" Type="bit" />
           <Property Name="ProfessionalQualifications" Type="varchar" MaxLength="50" />
           <Property Name="SectorID" Type="int" />
           <Property Name="PositionID" Type="int" />
           <Property Name="UserID" Type="int" />
           <Property Name="ManagerID" Type="int" />
-          <Property Name="IsNewRequest" Type="bit" />
         </EntityType>
         <EntityType Name="tblManager">
           <Key>
@@ -117,7 +117,7 @@
           <Property Name="Password" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'CompanyData.dbo.vwEmployee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'MyCompanyDB.dbo.vwEmployee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vwEmployee">
           <Key>
             <PropertyRef Name="UserID" />
@@ -128,6 +128,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwEmployee' does not have a primar
           <Property Name="ProfessionalQualifications" Type="varchar" MaxLength="50" />
           <Property Name="PositionID" Type="int" />
           <Property Name="SectorID" Type="int" />
+          <Property Name="IsNewRequest" Type="bit" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="LastName" Type="varchar" MaxLength="50" />
@@ -138,7 +139,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwEmployee' does not have a primar
           <Property Name="Username" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'CompanyData.dbo.vwEmployee1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'MyCompanyDB.dbo.vwEmployee1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vwEmployee1">
           <Key>
             <PropertyRef Name="UserID" />
@@ -149,6 +150,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwEmployee1' does not have a prima
           <Property Name="ProfessionalQualifications" Type="varchar" MaxLength="50" />
           <Property Name="PositionID" Type="int" />
           <Property Name="SectorID" Type="int" />
+          <Property Name="IsNewRequest" Type="bit" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="LastName" Type="varchar" MaxLength="50" />
@@ -159,7 +161,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwEmployee1' does not have a prima
           <Property Name="Username" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'CompanyData.dbo.vwEmployee2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'MyCompanyDB.dbo.vwEmployee2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vwEmployee2">
           <Key>
             <PropertyRef Name="EmployeeID" />
@@ -169,6 +171,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwEmployee2' does not have a prima
           <Property Name="Salary" Type="decimal" Precision="18" Scale="0" />
           <Property Name="ManagerID" Type="int" />
           <Property Name="ProfessionalQualifications" Type="varchar" MaxLength="50" />
+          <Property Name="IsNewRequest" Type="bit" />
           <Property Name="PositionID" Type="int" />
           <Property Name="SectorID" Type="int" />
           <Property Name="EmployeeID" Type="int" Nullable="false" />
@@ -179,22 +182,21 @@ warning 6002: The table/view 'CompanyData.dbo.vwEmployee2' does not have a prima
           <Property Name="JMBG" Type="varchar" MaxLength="50" />
           <Property Name="Residence" Type="varchar" MaxLength="50" />
           <Property Name="MaritalStatus" Type="varchar" MaxLength="50" />
-          <Property Name="IsNewRequest" Type="bit" />
           <Property Name="Username" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'MyCompanyDB.dbo.vwManager' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vwManager">
           <Key>
             <PropertyRef Name="ManagerID" />
-            <PropertyRef Name="UserID" />
           </Key>
-          <Property Name="NumberOfSuccesfullProjects" Type="int" />
-          <Property Name="OfficeNumber" Type="varchar" MaxLength="40" />
           <Property Name="ManagerID" Type="int" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
           <Property Name="ResponsibilityLevel" Type="varchar" MaxLength="50" />
-          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="NumberOfSuccesfullProjects" Type="int" />
+          <Property Name="Salary" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="OfficeNumber" Type="varchar" MaxLength="40" />
+          <Property Name="UserID" Type="int" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="LastName" Type="varchar" MaxLength="50" />
           <Property Name="Gender" Type="varchar" MaxLength="50" />
@@ -369,7 +371,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CompanyDataModelStoreContainer">
+        <EntityContainer Name="MyCompanyDBModelStoreContainer">
           <EntitySet Name="tblAdmin" EntityType="Self.tblAdmin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDailyReport" EntityType="Self.tblDailyReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblEmployee" EntityType="Self.tblEmployee" Schema="dbo" store:Type="Tables" />
@@ -388,6 +390,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
     [vwEmployee].[ProfessionalQualifications] AS [ProfessionalQualifications], 
     [vwEmployee].[PositionID] AS [PositionID], 
     [vwEmployee].[SectorID] AS [SectorID], 
+    [vwEmployee].[IsNewRequest] AS [IsNewRequest], 
     [vwEmployee].[UserID] AS [UserID], 
     [vwEmployee].[FirstName] AS [FirstName], 
     [vwEmployee].[LastName] AS [LastName], 
@@ -406,6 +409,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
     [vwEmployee1].[ProfessionalQualifications] AS [ProfessionalQualifications], 
     [vwEmployee1].[PositionID] AS [PositionID], 
     [vwEmployee1].[SectorID] AS [SectorID], 
+    [vwEmployee1].[IsNewRequest] AS [IsNewRequest], 
     [vwEmployee1].[UserID] AS [UserID], 
     [vwEmployee1].[FirstName] AS [FirstName], 
     [vwEmployee1].[LastName] AS [LastName], 
@@ -422,6 +426,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
     [vwEmployee2].[Salary] AS [Salary], 
     [vwEmployee2].[ManagerID] AS [ManagerID], 
     [vwEmployee2].[ProfessionalQualifications] AS [ProfessionalQualifications], 
+    [vwEmployee2].[IsNewRequest] AS [IsNewRequest], 
     [vwEmployee2].[PositionID] AS [PositionID], 
     [vwEmployee2].[SectorID] AS [SectorID], 
     [vwEmployee2].[EmployeeID] AS [EmployeeID], 
@@ -432,17 +437,17 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
     [vwEmployee2].[JMBG] AS [JMBG], 
     [vwEmployee2].[Residence] AS [Residence], 
     [vwEmployee2].[MaritalStatus] AS [MaritalStatus], 
-    [vwEmployee2].[IsNewRequest] AS [IsNewRequest], 
     [vwEmployee2].[Username] AS [Username]
     FROM [dbo].[vwEmployee2] AS [vwEmployee2]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwManager" EntityType="Self.vwManager" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [vwManager].[NumberOfSuccesfullProjects] AS [NumberOfSuccesfullProjects], 
-    [vwManager].[OfficeNumber] AS [OfficeNumber], 
     [vwManager].[ManagerID] AS [ManagerID], 
     [vwManager].[Email] AS [Email], 
     [vwManager].[ResponsibilityLevel] AS [ResponsibilityLevel], 
+    [vwManager].[NumberOfSuccesfullProjects] AS [NumberOfSuccesfullProjects], 
+    [vwManager].[Salary] AS [Salary], 
+    [vwManager].[OfficeNumber] AS [OfficeNumber], 
     [vwManager].[UserID] AS [UserID], 
     [vwManager].[FirstName] AS [FirstName], 
     [vwManager].[LastName] AS [LastName], 
@@ -510,7 +515,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CompanyDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="MyCompanyDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="tblAdmin">
           <Key>
             <PropertyRef Name="AdminID" />
@@ -540,12 +545,12 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
           <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="YearsOfService" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Salary" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="IsNewRequest" Type="Boolean" />
           <Property Name="ProfessionalQualifications" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SectorID" Type="Int32" />
           <Property Name="PositionID" Type="Int32" />
           <Property Name="UserID" Type="Int32" />
           <Property Name="ManagerID" Type="Int32" />
-          <Property Name="IsNewRequest" Type="Boolean" />
           <NavigationProperty Name="tblManager" Relationship="Self.FK__tblEmploy__Manag__4316F928" FromRole="tblEmployee" ToRole="tblManager" />
           <NavigationProperty Name="tblPosition" Relationship="Self.FK__tblEmploy__Posit__412EB0B6" FromRole="tblEmployee" ToRole="tblPosition" />
           <NavigationProperty Name="tblSector" Relationship="Self.FK__tblEmploy__Secto__403A8C7D" FromRole="tblEmployee" ToRole="tblSector" />
@@ -658,6 +663,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
           <Property Name="ProfessionalQualifications" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PositionID" Type="Int32" />
           <Property Name="SectorID" Type="Int32" />
+          <Property Name="IsNewRequest" Type="Boolean" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -677,6 +683,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
           <Property Name="ProfessionalQualifications" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PositionID" Type="Int32" />
           <Property Name="SectorID" Type="Int32" />
+          <Property Name="IsNewRequest" Type="Boolean" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -695,6 +702,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
           <Property Name="Salary" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="ManagerID" Type="Int32" />
           <Property Name="ProfessionalQualifications" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsNewRequest" Type="Boolean" />
           <Property Name="PositionID" Type="Int32" />
           <Property Name="SectorID" Type="Int32" />
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
@@ -705,20 +713,19 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
           <Property Name="JMBG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Residence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MaritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IsNewRequest" Type="Boolean" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="vwManager">
           <Key>
             <PropertyRef Name="ManagerID" />
-            <PropertyRef Name="UserID" />
           </Key>
-          <Property Name="NumberOfSuccesfullProjects" Type="Int32" />
-          <Property Name="OfficeNumber" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="ManagerID" Type="Int32" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ResponsibilityLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfSuccesfullProjects" Type="Int32" />
+          <Property Name="Salary" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="OfficeNumber" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -893,7 +900,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CompanyDataEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MyCompanyDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tblAdmins" EntityType="Self.tblAdmin" />
           <EntitySet Name="tblDailyReports" EntityType="Self.tblDailyReport" />
           <EntitySet Name="tblEmployees" EntityType="Self.tblEmployee" />
@@ -966,9 +973,9 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CompanyDataModelStoreContainer" CdmEntityContainer="CompanyDataEntities2">
+        <EntityContainerMapping StorageEntityContainer="MyCompanyDBModelStoreContainer" CdmEntityContainer="MyCompanyDBEntities">
           <EntitySetMapping Name="tblAdmins">
-            <EntityTypeMapping TypeName="CompanyDataModel.tblAdmin">
+            <EntityTypeMapping TypeName="MyCompanyDBModel.tblAdmin">
               <MappingFragment StoreEntitySet="tblAdmin">
                 <ScalarProperty Name="AdminID" ColumnName="AdminID" />
                 <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
@@ -978,7 +985,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblDailyReports">
-            <EntityTypeMapping TypeName="CompanyDataModel.tblDailyReport">
+            <EntityTypeMapping TypeName="MyCompanyDBModel.tblDailyReport">
               <MappingFragment StoreEntitySet="tblDailyReport">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
@@ -989,22 +996,22 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblEmployees">
-            <EntityTypeMapping TypeName="CompanyDataModel.tblEmployee">
+            <EntityTypeMapping TypeName="MyCompanyDBModel.tblEmployee">
               <MappingFragment StoreEntitySet="tblEmployee">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="YearsOfService" ColumnName="YearsOfService" />
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="IsNewRequest" ColumnName="IsNewRequest" />
                 <ScalarProperty Name="ProfessionalQualifications" ColumnName="ProfessionalQualifications" />
                 <ScalarProperty Name="SectorID" ColumnName="SectorID" />
                 <ScalarProperty Name="PositionID" ColumnName="PositionID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
-                <ScalarProperty Name="IsNewRequest" ColumnName="IsNewRequest" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblManagers">
-            <EntityTypeMapping TypeName="CompanyDataModel.tblManager">
+            <EntityTypeMapping TypeName="MyCompanyDBModel.tblManager">
               <MappingFragment StoreEntitySet="tblManager">
                 <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -1018,7 +1025,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblPositions">
-            <EntityTypeMapping TypeName="CompanyDataModel.tblPosition">
+            <EntityTypeMapping TypeName="MyCompanyDBModel.tblPosition">
               <MappingFragment StoreEntitySet="tblPosition">
                 <ScalarProperty Name="PositionID" ColumnName="PositionID" />
                 <ScalarProperty Name="PositionName" ColumnName="PositionName" />
@@ -1027,7 +1034,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblProjects">
-            <EntityTypeMapping TypeName="CompanyDataModel.tblProject">
+            <EntityTypeMapping TypeName="MyCompanyDBModel.tblProject">
               <MappingFragment StoreEntitySet="tblProject">
                 <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
                 <ScalarProperty Name="ClientName" ColumnName="ClientName" />
@@ -1043,7 +1050,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblReports">
-            <EntityTypeMapping TypeName="CompanyDataModel.tblReport">
+            <EntityTypeMapping TypeName="MyCompanyDBModel.tblReport">
               <MappingFragment StoreEntitySet="tblReport">
                 <ScalarProperty Name="ReportID" ColumnName="ReportID" />
                 <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
@@ -1054,7 +1061,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblRequestForChanges">
-            <EntityTypeMapping TypeName="CompanyDataModel.tblRequestForChange">
+            <EntityTypeMapping TypeName="MyCompanyDBModel.tblRequestForChange">
               <MappingFragment StoreEntitySet="tblRequestForChange">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
@@ -1064,7 +1071,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblSectors">
-            <EntityTypeMapping TypeName="CompanyDataModel.tblSector">
+            <EntityTypeMapping TypeName="MyCompanyDBModel.tblSector">
               <MappingFragment StoreEntitySet="tblSector">
                 <ScalarProperty Name="SectorID" ColumnName="SectorID" />
                 <ScalarProperty Name="SectorName" ColumnName="SectorName" />
@@ -1073,7 +1080,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblUsers">
-            <EntityTypeMapping TypeName="CompanyDataModel.tblUser">
+            <EntityTypeMapping TypeName="MyCompanyDBModel.tblUser">
               <MappingFragment StoreEntitySet="tblUser">
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -1088,7 +1095,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="vwEmployees">
-            <EntityTypeMapping TypeName="CompanyDataModel.vwEmployee">
+            <EntityTypeMapping TypeName="MyCompanyDBModel.vwEmployee">
               <MappingFragment StoreEntitySet="vwEmployee">
                 <ScalarProperty Name="YearsOfService" ColumnName="YearsOfService" />
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
@@ -1096,6 +1103,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
                 <ScalarProperty Name="ProfessionalQualifications" ColumnName="ProfessionalQualifications" />
                 <ScalarProperty Name="PositionID" ColumnName="PositionID" />
                 <ScalarProperty Name="SectorID" ColumnName="SectorID" />
+                <ScalarProperty Name="IsNewRequest" ColumnName="IsNewRequest" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -1108,7 +1116,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="vwEmployee1">
-            <EntityTypeMapping TypeName="CompanyDataModel.vwEmployee1">
+            <EntityTypeMapping TypeName="MyCompanyDBModel.vwEmployee1">
               <MappingFragment StoreEntitySet="vwEmployee1">
                 <ScalarProperty Name="YearsOfService" ColumnName="YearsOfService" />
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
@@ -1116,6 +1124,7 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
                 <ScalarProperty Name="ProfessionalQualifications" ColumnName="ProfessionalQualifications" />
                 <ScalarProperty Name="PositionID" ColumnName="PositionID" />
                 <ScalarProperty Name="SectorID" ColumnName="SectorID" />
+                <ScalarProperty Name="IsNewRequest" ColumnName="IsNewRequest" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -1128,12 +1137,13 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="vwEmployee2">
-            <EntityTypeMapping TypeName="CompanyDataModel.vwEmployee2">
+            <EntityTypeMapping TypeName="MyCompanyDBModel.vwEmployee2">
               <MappingFragment StoreEntitySet="vwEmployee2">
                 <ScalarProperty Name="YearsOfService" ColumnName="YearsOfService" />
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
                 <ScalarProperty Name="ProfessionalQualifications" ColumnName="ProfessionalQualifications" />
+                <ScalarProperty Name="IsNewRequest" ColumnName="IsNewRequest" />
                 <ScalarProperty Name="PositionID" ColumnName="PositionID" />
                 <ScalarProperty Name="SectorID" ColumnName="SectorID" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -1144,19 +1154,19 @@ warning 6002: The table/view 'CompanyData.dbo.vwManager' does not have a primary
                 <ScalarProperty Name="JMBG" ColumnName="JMBG" />
                 <ScalarProperty Name="Residence" ColumnName="Residence" />
                 <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
-                <ScalarProperty Name="IsNewRequest" ColumnName="IsNewRequest" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="vwManagers">
-            <EntityTypeMapping TypeName="CompanyDataModel.vwManager">
+            <EntityTypeMapping TypeName="MyCompanyDBModel.vwManager">
               <MappingFragment StoreEntitySet="vwManager">
-                <ScalarProperty Name="NumberOfSuccesfullProjects" ColumnName="NumberOfSuccesfullProjects" />
-                <ScalarProperty Name="OfficeNumber" ColumnName="OfficeNumber" />
                 <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ResponsibilityLevel" ColumnName="ResponsibilityLevel" />
+                <ScalarProperty Name="NumberOfSuccesfullProjects" ColumnName="NumberOfSuccesfullProjects" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="OfficeNumber" ColumnName="OfficeNumber" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />

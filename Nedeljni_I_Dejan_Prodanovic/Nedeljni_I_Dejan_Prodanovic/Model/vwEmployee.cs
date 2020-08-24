@@ -20,6 +20,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Model
         public string ProfessionalQualifications { get; set; }
         public Nullable<int> PositionID { get; set; }
         public Nullable<int> SectorID { get; set; }
+        public Nullable<bool> IsNewRequest { get; set; }
         public int UserID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

@@ -18,5 +18,6 @@ namespace Nedeljni_I_Dejan_Prodanovic.Service
         List<vwEmployee2> GetEmployeesOfManager(int managerId);
         void EditManager(tblManager manager);
         vwManager GetvwManager(int managerId);
+         
     }
 }

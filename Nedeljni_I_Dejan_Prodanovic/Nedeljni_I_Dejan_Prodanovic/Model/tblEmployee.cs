@@ -25,12 +25,12 @@ namespace Nedeljni_I_Dejan_Prodanovic.Model
         public int EmployeeID { get; set; }
         public string YearsOfService { get; set; }
         public Nullable<decimal> Salary { get; set; }
+        public Nullable<bool> IsNewRequest { get; set; }
         public string ProfessionalQualifications { get; set; }
         public Nullable<int> SectorID { get; set; }
         public Nullable<int> PositionID { get; set; }
         public Nullable<int> UserID { get; set; }
         public Nullable<int> ManagerID { get; set; }
-        public Nullable<bool> IsNewRequest { get; set; }
     
         public virtual tblManager tblManager { get; set; }
         public virtual tblPosition tblPosition { get; set; }

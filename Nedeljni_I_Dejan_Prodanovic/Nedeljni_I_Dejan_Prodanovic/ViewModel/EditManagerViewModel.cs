@@ -302,7 +302,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
         tblUser CreateUser(vwManager employee)
         {
             tblUser user = new tblUser();
-            user.UserID = employee.UserID;
+            user.UserID = (int)employee.UserID;
             user.FirstName = employee.FirstName;
             user.LastName = employee.LastName;
             user.JMBG = employee.JMBG;

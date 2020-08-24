@@ -18,6 +18,7 @@ namespace Nedeljni_I_Dejan_Prodanovic.Model
         public Nullable<decimal> Salary { get; set; }
         public Nullable<int> ManagerID { get; set; }
         public string ProfessionalQualifications { get; set; }
+        public Nullable<bool> IsNewRequest { get; set; }
         public Nullable<int> PositionID { get; set; }
         public Nullable<int> SectorID { get; set; }
         public int EmployeeID { get; set; }
@@ -28,7 +29,6 @@ namespace Nedeljni_I_Dejan_Prodanovic.Model
         public string JMBG { get; set; }
         public string Residence { get; set; }
         public string MaritalStatus { get; set; }
-        public Nullable<bool> IsNewRequest { get; set; }
         public string Username { get; set; }
     }
 }
