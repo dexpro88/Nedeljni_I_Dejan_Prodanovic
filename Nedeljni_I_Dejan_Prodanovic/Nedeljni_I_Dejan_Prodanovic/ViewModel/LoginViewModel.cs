@@ -128,7 +128,14 @@ namespace Nedeljni_I_Dejan_Prodanovic.ViewModel
                         view.Close();
                         return;
                     }
-                   
+                    else if (admin.AdministratorType.Equals("Team"))
+                    {
+                        TeamAdminView teamAdminView = new TeamAdminView();
+                        teamAdminView.Show();
+                        view.Close();
+                        return;
+                    }
+
                 }
 
                 tblManager manager = managerService.GetManagerByUserId(user.UserID);

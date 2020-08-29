@@ -161,6 +161,7 @@
     <Compile Include="ViewModel\SectorsViewModel.cs" />
     <Compile Include="ViewModel\SetResponsibilityViewModel.cs" />
     <Compile Include="ViewModel\ShowEmployeesViewModel.cs" />
+    <Compile Include="ViewModel\TeamAdminMainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AddAdmin.xaml.cs">
       <DependentUpon>AddAdmin.xaml</DependentUpon>
@@ -221,6 +222,9 @@
     </Compile>
     <Compile Include="View\ShowEmployees.xaml.cs">
       <DependentUpon>ShowEmployees.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TeamAdminView.xaml.cs">
+      <DependentUpon>TeamAdminView.xaml</DependentUpon>
     </Compile>
     <Page Include="InputDialog\InputDialogSample.xaml">
       <SubType>Designer</SubType>
@@ -315,6 +319,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ShowEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TeamAdminView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

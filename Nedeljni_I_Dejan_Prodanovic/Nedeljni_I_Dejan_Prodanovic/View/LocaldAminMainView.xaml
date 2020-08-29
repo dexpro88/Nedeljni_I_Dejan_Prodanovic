@@ -49,7 +49,11 @@
                      Content="Logout" />
             
         </StackPanel>
-        
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <Label Foreground="White" FontSize="15">You logged in as Local administrator</Label>
+        </StackPanel>
         <DataGrid Grid.Row="1"
                   Name="DataGridResults"
                   ItemsSource="{Binding ManagerList, UpdateSourceTrigger=PropertyChanged}"
